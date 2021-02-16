@@ -25,10 +25,26 @@ const validationSchema = yup.object().shape({
     .min(5, "Password needs to be at least 5 characters long")
     .max(15, "Password needs to be at most 15 characters long")
     .required("Password is required"),
+  confirmPassword: yup
+    .string()
+    .min(5, "Password needs to be at least 5 characters long")
+    .max(15, "Password needs to be at most 15 characters long")
+    .required("Confirm password is required"),
 });
 
-const login = () => {
+const validate = (values) => {
+  const errors = {};
+
+  if (values.password !== values.confirmPassword) {
+    errors.confirmPassword = "Passwords do not match";
+  }
+
+  return errors;
+};
+
+const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   return (
@@ -42,10 +58,11 @@ const login = () => {
         boxShadow="lg"
       >
         <Box textAlign="center">
-          <Heading>Login</Heading>
+          <Heading>Register</Heading>
         </Box>
         <Box my={4} textAlign="left">
           <Formik
+            validate={validate}
             onSubmit={(values, { setSubmitting, validateForm }) => {
               setSubmitted(false);
               console.log("Hello");
@@ -64,7 +81,7 @@ const login = () => {
                   setSubmitted(true);
                 });
             }}
-            initialValues={{ email: "", password: "" }}
+            initialValues={{ email: "", password: "", confirmPassword: "" }}
             validationSchema={validationSchema}
           >
             {({ isSubmitting }) => (
@@ -103,6 +120,37 @@ const login = () => {
                     </FormControl>
                   )}
                 </Field>
+                <Field name="confirmPassword">
+                  {({ field, meta }) => (
+                    <FormControl mt={4} isInvalid={submitted && meta.error}>
+                      <FormLabel>Confirm password</FormLabel>
+                      <InputGroup>
+                        <Input
+                          {...field}
+                          id="confirmPassword"
+                          type={showConfirmPassword ? "text" : "password"}
+                          name="confirmPassword"
+                        />
+                        <InputRightElement width="3rem">
+                          <Button
+                            h="1.5rem"
+                            size="sm"
+                            onClick={() =>
+                              setShowConfirmPassword(!showConfirmPassword)
+                            }
+                          >
+                            {showConfirmPassword ? (
+                              <ViewOffIcon />
+                            ) : (
+                              <ViewIcon />
+                            )}
+                          </Button>
+                        </InputRightElement>
+                      </InputGroup>
+                      <FormErrorMessage>{meta.error}</FormErrorMessage>
+                    </FormControl>
+                  )}
+                </Field>
                 <Button
                   colorScheme="teal"
                   type="submit"
@@ -118,14 +166,14 @@ const login = () => {
                       color="teal"
                     />
                   ) : (
-                    "Log in"
+                    "Register"
                   )}
                 </Button>
               </Form>
             )}
           </Formik>
           <Text mt={4} textAlign="center" width="100%" fontSize={14}>
-            or <Link href="/register">register instead</Link>
+            or <Link href="/login">go to login instead</Link>
           </Text>
         </Box>
       </Box>
@@ -133,4 +181,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default Register;
