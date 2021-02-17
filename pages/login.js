@@ -20,7 +20,6 @@ import {
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import Link from "../components/Link";
 import { useFirebaseAuth } from "../firebase/provider";
-import { useRouter } from "next/router";
 
 const validationSchema = yup.object().shape({
   email: yup.string().email("Email is not valid").required("Email is required"),
@@ -35,17 +34,14 @@ const login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [loginError, setLoginError] = useState("");
-  const router = useRouter();
   const { signIn } = useFirebaseAuth();
 
   const handleLogin = ({ email, password }) => {
     setLoginError("");
 
-    return signIn(email, password)
-      .catch((error) => {
-        setLoginError(error.message);
-      })
-      .then(() => router.push("/"));
+    return signIn(email, password).catch((error) => {
+      setLoginError(error.message);
+    });
   };
 
   return (
