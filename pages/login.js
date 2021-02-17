@@ -19,7 +19,8 @@ import {
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import Link from "../components/Link";
-import firebase from "../firebase";
+import { useFirebaseAuth } from "../firebase/provider";
+import { useRouter } from "next/router";
 
 const validationSchema = yup.object().shape({
   email: yup.string().email("Email is not valid").required("Email is required"),
@@ -34,16 +35,17 @@ const login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [loginError, setLoginError] = useState("");
+  const router = useRouter();
+  const { signIn } = useFirebaseAuth();
 
   const handleLogin = ({ email, password }) => {
     setLoginError("");
 
-    return firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
+    return signIn(email, password)
       .catch((error) => {
         setLoginError(error.message);
-      });
+      })
+      .then(() => router.push("/"));
   };
 
   return (
@@ -63,7 +65,6 @@ const login = () => {
           <Formik
             onSubmit={(values, { setSubmitting, validateForm }) => {
               setSubmitted(false);
-              console.log("Hello");
 
               validateForm()
                 .then((errors) => {

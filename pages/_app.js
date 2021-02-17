@@ -1,25 +1,17 @@
 import "../styles/globals.css";
 import { ChakraProvider } from "@chakra-ui/react";
-import firebase from "../firebase";
-import React, { useEffect } from "react";
-import { useRouter } from "next/router";
+import React from "react";
+import AuthProvider from "../firebase/provider";
+import AuthGatekeeper from "../components/AuthGatekeeper";
 
 function MyApp({ Component, pageProps }) {
-  const router = useRouter();
-  useEffect(() => {
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        router.push("/");
-      } else {
-        if (router.route !== "/login" && router.route !== "/register")
-          router.push("/login");
-      }
-    });
-  }, []);
-
   return (
     <ChakraProvider>
-      <Component {...pageProps} />
+      <AuthProvider>
+        <AuthGatekeeper>
+          <Component {...pageProps} />
+        </AuthGatekeeper>
+      </AuthProvider>
     </ChakraProvider>
   );
 }

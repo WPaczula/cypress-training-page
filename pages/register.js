@@ -18,9 +18,9 @@ import {
   AlertIcon,
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-import firebase from "../firebase";
 import Link from "../components/Link";
 import { useRouter } from "next/router";
+import { useFirebaseAuth } from "../firebase/provider";
 
 const validationSchema = yup.object().shape({
   email: yup.string().email("Email is not valid").required("Email is required"),
@@ -52,12 +52,11 @@ const Register = () => {
   const [submitted, setSubmitted] = useState(false);
   const [registerError, setRegisterError] = useState("");
   const router = useRouter();
+  const { signUp } = useFirebaseAuth();
 
   const handleRegister = ({ email, password }, callback) => {
     setRegisterError("");
-    return firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
+    return signUp(email, password)
       .catch((error) => {
         setRegisterError(error.message);
       })
