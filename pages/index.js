@@ -1,4 +1,6 @@
+import { Button } from "@chakra-ui/react";
 import Head from "next/head";
+import firebase from "../firebase";
 
 export default function Home() {
   return (
@@ -7,7 +9,8 @@ export default function Home() {
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      Hello
+      Hello user
+      <Button onClick={() => firebase.auth().signOut()}>Sign out</Button>
     </div>
   );
 }

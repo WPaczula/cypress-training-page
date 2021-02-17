@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Formik, Form, Field } from "formik";
 import * as yup from "yup";
 import {
@@ -14,9 +14,12 @@ import {
   FormErrorMessage,
   CircularProgress,
   Text,
+  Alert,
+  AlertIcon,
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import Link from "../components/Link";
+import firebase from "../firebase";
 
 const validationSchema = yup.object().shape({
   email: yup.string().email("Email is not valid").required("Email is required"),
@@ -30,6 +33,18 @@ const validationSchema = yup.object().shape({
 const login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [loginError, setLoginError] = useState("");
+
+  const handleLogin = ({ email, password }) => {
+    setLoginError("");
+
+    return firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .catch((error) => {
+        setLoginError(error.message);
+      });
+  };
 
   return (
     <Flex width="full" align="center" justifyContent="center">
@@ -54,10 +69,9 @@ const login = () => {
                 .then((errors) => {
                   if (!Object.values(errors).length) {
                     setSubmitting(true);
-                    setTimeout(() => {
+                    handleLogin(values).then(() => {
                       setSubmitting(false);
-                      alert(JSON.stringify(values));
-                    }, 2000);
+                    });
                   }
                 })
                 .then(() => {
@@ -121,6 +135,12 @@ const login = () => {
                     "Log in"
                   )}
                 </Button>
+                {loginError && (
+                  <Alert status="error" mt={4}>
+                    <AlertIcon />
+                    {loginError}
+                  </Alert>
+                )}
               </Form>
             )}
           </Formik>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Form, Field } from "formik";
 import * as yup from "yup";
 import {
@@ -14,9 +14,13 @@ import {
   FormErrorMessage,
   CircularProgress,
   Text,
+  Alert,
+  AlertIcon,
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import firebase from "../firebase";
 import Link from "../components/Link";
+import { useRouter } from "next/router";
 
 const validationSchema = yup.object().shape({
   email: yup.string().email("Email is not valid").required("Email is required"),
@@ -46,6 +50,19 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [registerError, setRegisterError] = useState("");
+  const router = useRouter();
+
+  const handleRegister = ({ email, password }, callback) => {
+    setRegisterError("");
+    return firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .catch((error) => {
+        setRegisterError(error.message);
+      })
+      .finally(callback);
+  };
 
   return (
     <Flex width="full" align="center" justifyContent="center">
@@ -65,16 +82,15 @@ const Register = () => {
             validate={validate}
             onSubmit={(values, { setSubmitting, validateForm }) => {
               setSubmitted(false);
-              console.log("Hello");
 
               validateForm()
                 .then((errors) => {
                   if (!Object.values(errors).length) {
                     setSubmitting(true);
-                    setTimeout(() => {
+                    handleRegister(values).then(() => {
                       setSubmitting(false);
-                      alert(JSON.stringify(values));
-                    }, 2000);
+                      router.push("/login");
+                    });
                   }
                 })
                 .then(() => {
@@ -169,6 +185,12 @@ const Register = () => {
                     "Register"
                   )}
                 </Button>
+                {registerError && (
+                  <Alert status="error" mt={4}>
+                    <AlertIcon />
+                    {registerError}
+                  </Alert>
+                )}
               </Form>
             )}
           </Formik>
