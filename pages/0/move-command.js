@@ -1,10 +1,12 @@
 import { Code, Heading, Text } from "@chakra-ui/react";
 import React from "react";
-import Container from "../components/Container";
+import Container from "../../components/Container";
+import MainPageLink from "../../components/MainPageLink";
 
 const MoveCommand = () => {
   return (
     <Container>
+      <MainPageLink />
       <Heading color="teal">0. Dodaj login command 📦</Heading>
       <Text mt={8} textAlign="justify">
         Tworzenenie reużywalnych komandów w cypressie to dobry sposób na{" "}

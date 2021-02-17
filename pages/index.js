@@ -9,6 +9,7 @@ import {
 import Container from "../components/Container";
 import Head from "next/head";
 import { useFirebaseAuth } from "../firebase/provider";
+import Link from "../components/Link";
 
 export default function Home() {
   const { signOut } = useFirebaseAuth();
@@ -42,9 +43,16 @@ export default function Home() {
         <Text mt={2}>Powodzenia 🚀</Text>
       </Container>
       <Container>
-        <OrderedList>
-          <ListItem>Podstawowe funkcje w cypressie</ListItem>
-          <ListItem>Debugowanie testu</ListItem>
+        <OrderedList start={0}>
+          <Link href="/0/move-command">
+            <ListItem>Dodaj login command</ListItem>
+          </Link>
+          <ListItem>Pisanie testów</ListItem>
+          <OrderedList>
+            <Link href="/1/simple-test">
+              <ListItem>Wykorzystanie podstawowych funkcji</ListItem>
+            </Link>
+          </OrderedList>
           <ListItem>Podstawowe funkcje w cypressie</ListItem>
         </OrderedList>
       </Container>
