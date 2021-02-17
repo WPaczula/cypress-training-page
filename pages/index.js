@@ -52,6 +52,9 @@ export default function Home() {
             <Link href="/1/simple-test">
               <ListItem>Wykorzystanie podstawowych funkcji</ListItem>
             </Link>
+            <Link href="/1/edit-save">
+              <ListItem>Edycja danych i ich zapis</ListItem>
+            </Link>
           </OrderedList>
           <ListItem>Podstawowe funkcje w cypressie</ListItem>
         </OrderedList>
