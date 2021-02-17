@@ -103,21 +103,24 @@ const Register = () => {
               <Form noValidate>
                 <Field name="email">
                   {({ field, meta }) => (
-                    <FormControl isInvalid={submitted && meta.error}>
+                    <FormControl id="email" isInvalid={submitted && meta.error}>
                       <FormLabel>Email</FormLabel>
-                      <Input id="emaiL" {...field} type="email" />
+                      <Input {...field} type="email" />
                       <FormErrorMessage>{meta.error}</FormErrorMessage>
                     </FormControl>
                   )}
                 </Field>
                 <Field name="password">
                   {({ field, meta }) => (
-                    <FormControl mt={4} isInvalid={submitted && meta.error}>
+                    <FormControl
+                      id="password"
+                      mt={4}
+                      isInvalid={submitted && meta.error}
+                    >
                       <FormLabel>Password</FormLabel>
                       <InputGroup>
                         <Input
                           {...field}
-                          id="password"
                           type={showPassword ? "text" : "password"}
                           name="password"
                         />
@@ -137,12 +140,15 @@ const Register = () => {
                 </Field>
                 <Field name="confirmPassword">
                   {({ field, meta }) => (
-                    <FormControl mt={4} isInvalid={submitted && meta.error}>
+                    <FormControl
+                      id="confirmPassword"
+                      mt={4}
+                      isInvalid={submitted && meta.error}
+                    >
                       <FormLabel>Confirm password</FormLabel>
                       <InputGroup>
                         <Input
                           {...field}
-                          id="confirmPassword"
                           type={showConfirmPassword ? "text" : "password"}
                           name="confirmPassword"
                         />
