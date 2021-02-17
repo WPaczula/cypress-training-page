@@ -3,7 +3,14 @@ import { Container as ChakraContainer } from "@chakra-ui/react";
 
 const Container = (props) => {
   return (
-    <ChakraContainer mt={8} shadow="md" borderRadius="base" p="8" {...props}>
+    <ChakraContainer
+      mt={8}
+      shadow="md"
+      borderRadius="base"
+      p="8"
+      maxWidth={"75ch"}
+      {...props}
+    >
       {props.children}
     </ChakraContainer>
   );
