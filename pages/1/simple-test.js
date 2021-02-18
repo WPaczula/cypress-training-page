@@ -50,7 +50,7 @@ const SimpleTest = () => {
           </ListItem>
         </OrderedList>
       </Container>
-      <Container>
+      <Container mb={64}>
         <Formik
           initialValues={{ name: "", gender: "" }}
           onSubmit={({ name, gender }) => {

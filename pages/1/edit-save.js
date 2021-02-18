@@ -72,7 +72,7 @@ const EditSave = () => {
           </ListItem>
         </OrderedList>
       </Container>
-      <Container mt={4}>
+      <Container mt={4} mb={64}>
         <Flex
           position="relative"
           justifyContent="center"

@@ -23,12 +23,14 @@ import { Field, Form, Formik } from "formik";
 import React from "react";
 import Container from "../../components/Container";
 import axios from "axios";
+import MainPageLink from "../../components/MainPageLink";
 
 const SimulatingErrors = () => {
   const toast = useToast();
 
   return (
     <>
+      <MainPageLink />
       <Container>
         <Heading color="teal">Kontrolowane wybuchy 💥</Heading>
         <Text mt={8}>
@@ -85,7 +87,7 @@ const SimulatingErrors = () => {
           </ListItem>
         </OrderedList>
       </Container>
-      <Container>
+      <Container mb={64}>
         <Formik
           initialValues={{ amount: 1, phone: "" }}
           onSubmit={({ amount, phone }, { setSubmitting }) => {
@@ -110,8 +112,6 @@ const SimulatingErrors = () => {
                 });
               })
               .catch((e) => {
-                console.log(e.response);
-                console.log(e.response.status);
                 if (
                   e.response.data.code === "lack_of_funds" &&
                   e.response.status === 403
