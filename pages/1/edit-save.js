@@ -59,7 +59,7 @@ const EditSave = () => {
           Test case
         </Heading>
         <OrderedList mt={4}>
-          <ListItem>Wejdź na stronę</ListItem>
+          <ListItem>Wejdź na stronę /1/edit-save</ListItem>
           <ListItem>Wczytaj liczbę emoji</ListItem>
           <ListItem>Wejdź w tryb edycji za pomocą przycisku "Edytuj"</ListItem>
           <ListItem>Zwiększ liczbę o 1</ListItem>

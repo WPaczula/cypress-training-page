@@ -9,7 +9,6 @@ import {
   OrderedList,
   Select,
   Text,
-  toast,
   useToast,
 } from "@chakra-ui/react";
 import { Field, Form, Formik } from "formik";
@@ -41,7 +40,7 @@ const SimpleTest = () => {
           Test case
         </Heading>
         <OrderedList mt={4}>
-          <ListItem>Wejdź na stronę</ListItem>
+          <ListItem>Wejdź na stronę /1/simple-test</ListItem>
           <ListItem>Wypełnij płeć (mężczyzna)</ListItem>
           <ListItem>Wpisz imię (Jan)</ListItem>
           <ListItem>Wyślij formularz przyciskiem "Wyślij"</ListItem>
