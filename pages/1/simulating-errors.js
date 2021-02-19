@@ -40,10 +40,10 @@ const SimulatingErrors = () => {
         </Text>
         <Text mt={4}>
           Cypress pozwala na przechwytywanie requestów przeglądarki i zwracanie
-          swoich własnych odpowiedzi przy użyciu metody <Code>intercept</Code>.
-          Response można zapisać jako jsony nazywane fixture. Przy okazji tego
-          ćwiczenia nauczysz się jak zasymulować błąd API dla strony i jak
-          wykorzystywać pliki fixture.
+          swoich własnych odpowiedzi przy użyciu metod <Code>intercept</Code>{" "}
+          oraz <Code>wait</Code>. Response można zapisać jako jsony nazywane
+          fixture. Przy okazji tego ćwiczenia nauczysz się jak zasymulować błąd
+          API dla strony i jak wykorzystywać pliki fixture.
         </Text>
         <Text>
           Poniżej znajduje się strona, która symuluje realizację przelewu

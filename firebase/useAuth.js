@@ -1,22 +1,28 @@
 import { useState, useEffect } from "react";
-import firebase from "./firebase";
+import firebaseApp from "./firebase";
+import firebase from "firebase";
 
 const useAuth = () => {
   const [user, setUser] = useState(null);
 
   const signIn = (email, password) => {
-    return firebase
+    return firebaseApp
       .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then((response) => {
-        setUser(response.user);
+      .setPersistence(firebase.auth.Auth.Persistence.NONE)
+      .then(() =>
+        firebaseApp
+          .auth()
+          .signInWithEmailAndPassword(email, password)
+          .then((response) => {
+            setUser(response.user);
 
-        return response.user;
-      });
+            return response.user;
+          })
+      );
   };
 
   const signUp = (email, password) => {
-    return firebase
+    return firebaseApp
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then((response) => {
@@ -27,7 +33,7 @@ const useAuth = () => {
   };
 
   const signOut = () => {
-    return firebase
+    return firebaseApp
       .auth()
       .signOut()
       .then(() => {
@@ -36,7 +42,7 @@ const useAuth = () => {
   };
 
   useEffect(() => {
-    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+    const unsubscribe = firebaseApp.auth().onAuthStateChanged((user) => {
       if (user) {
         setUser(user);
       } else {

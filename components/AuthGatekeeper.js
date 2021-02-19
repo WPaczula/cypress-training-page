@@ -38,7 +38,11 @@ const AuthGatekeeper = React.memo(({ children }) => {
   const previousUserState = usePrevious(user);
   useEffect(() => {
     if (!previousUserState && !!user && router.pathname === "/login") {
-      router.push(referer || "/");
+      if (referer !== "/login") {
+        router.push(referer || "/");
+      } else {
+        router.push("/");
+      }
     }
   }, [user, previousUserState]);
 
