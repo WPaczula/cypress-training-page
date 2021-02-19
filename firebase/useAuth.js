@@ -24,12 +24,17 @@ const useAuth = () => {
   const signUp = (email, password) => {
     return firebaseApp
       .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then((response) => {
-        setUser(response.user);
+      .setPersistence(firebase.auth.Auth.Persistence.NONE)
+      .then(() =>
+        firebaseApp
+          .auth()
+          .createUserWithEmailAndPassword(email, password)
+          .then((response) => {
+            setUser(response.user);
 
-        return response.user;
-      });
+            return response.user;
+          })
+      );
   };
 
   const signOut = () => {

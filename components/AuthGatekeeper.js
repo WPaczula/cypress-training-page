@@ -28,7 +28,7 @@ const AuthGatekeeper = React.memo(({ children }) => {
 
   useEffect(() => {
     if (user === false) {
-      if (router.pathname !== "/login" || router.pathname !== "/register") {
+      if (router.pathname !== "/login" && router.pathname !== "/register") {
         setReferer(router.pathname);
         router.push("/login");
       }
@@ -37,8 +37,12 @@ const AuthGatekeeper = React.memo(({ children }) => {
 
   const previousUserState = usePrevious(user);
   useEffect(() => {
-    if (!previousUserState && !!user && router.pathname === "/login") {
-      if (referer !== "/login") {
+    if (
+      !previousUserState &&
+      !!user &&
+      (router.pathname === "/login" || router.pathname === "/register")
+    ) {
+      if (referer !== "/login" && referer !== "/register") {
         router.push(referer || "/");
       } else {
         router.push("/");
@@ -54,7 +58,7 @@ const AuthGatekeeper = React.memo(({ children }) => {
     (router.pathname !== "/login" &&
       router.pathname !== "/register" &&
       user === false) ||
-    (router.pathname === "/login" && user)
+    ((router.pathname === "/login" || router.pathname === "/register") && user)
   ) {
     return <Loading />;
   }
