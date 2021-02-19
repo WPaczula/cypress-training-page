@@ -63,7 +63,7 @@ const SimulatingErrors = () => {
           <ListItem>Wyślij formularz przyciskiem "Prześlij blikiem"</ListItem>
           <ListItem>
             Spodziewany rezultat: Jeżeli numer telefonu nie istnieje (status 404
-            i określone bodyy <Code>{`{ code: "number_not_found" }`}</Code>)
+            i określone body <Code>{`{ code: "number_not_found" }`}</Code>)
             użytkownik powinien zobaczyć informację o treści "Nie udało się
             znaleźć odbiorcy o numerze telefonu *NUMER_TELEFONU*"
           </ListItem>
@@ -183,6 +183,7 @@ const SimulatingErrors = () => {
               <Button
                 width="100%"
                 type="submit"
+                colorScheme="teal"
                 disabled={!values.amount || !values.phone || isSubmitting}
                 mt={4}
               >

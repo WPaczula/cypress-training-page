@@ -24,29 +24,51 @@ const SimpleTest = () => {
       <MainPageLink />
       <Container>
         <Heading color="teal">Podstawowy test 👶</Heading>
+        <Text mt={4} textAlign="justify">
+          Nic nie utrwala wiedzy lepiej niż wykorzystanie jej w praktyce.
+          Dlatego na początku twoim zadaniem będzie realizacja kolejnego
+          prostego testu - zapisu formularza i sprawdzenie wyświetlenia
+          informacji.
+        </Text>
+        <Text mt={4} textAlign="justify">
+          W tym ćwiczeniu wykorzystasz podstawowe metody cypressa takie jak{" "}
+          <Code>get</Code>, <Code>select</Code>, <Code>type</Code>,{" "}
+          <Code>click</Code> oraz asercje takie jak{" "}
+          <Code>should('be.visible')</Code>
+        </Text>
         <Text mt={8} textAlign="justify">
           Poniżej znajduje się formularz, w którym należy wybrać płeć oraz imię.
           Po przyciśnięciu przycisku submit zostanie wyświetlony toast z
           powitaniem.
         </Text>
-        <Text mt={4} textAlign="justify">
-          W tym ćwiczeniu przydadzą Ci się metody <Code>get</Code>,{" "}
-          <Code>select</Code>, <Code>type</Code>, <Code>click</Code> oraz
-          asercje takie jak <Code>should('be.visible')</Code>
-        </Text>
       </Container>
       <Container mt={4}>
         <Heading size="md" color="teal">
-          Test case
+          Test case 1
         </Heading>
         <OrderedList mt={4}>
           <ListItem>Wejdź na stronę /1/simple-test</ListItem>
-          <ListItem>Wypełnij płeć (mężczyzna)</ListItem>
-          <ListItem>Wpisz imię (Jan)</ListItem>
+          <ListItem>Wypełnij płeć - mężczyzna</ListItem>
+          <ListItem>Wpisz imię - Jan</ListItem>
           <ListItem>Wyślij formularz przyciskiem "Wyślij"</ListItem>
           <ListItem>
             Spodziewany rezultat: Zostaje wyświetlony toast z powitaniem: "Witaj
-            Jan! Cieszę się że wysłałeś ten formularz!"
+            Jan! Cieszę się, że wysłałeś ten formularz!"
+          </ListItem>
+        </OrderedList>
+      </Container>
+      <Container mt={4}>
+        <Heading size="md" color="teal">
+          Test case 2
+        </Heading>
+        <OrderedList mt={4}>
+          <ListItem>Wejdź na stronę /1/simple-test</ListItem>
+          <ListItem>Wypełnij płeć - kobieta</ListItem>
+          <ListItem>Pozostaw imię puste</ListItem>
+          <ListItem>Wyślij formularz przyciskiem "Wyślij"</ListItem>
+          <ListItem>
+            Spodziewany rezultat: Zostaje wyświetlony toast z powitaniem: "Cześć
+            tajemnicza nieznajoma! Cieszę się że wysłałaś ten formularz!"
           </ListItem>
         </OrderedList>
       </Container>
@@ -56,13 +78,15 @@ const SimpleTest = () => {
           onSubmit={({ name, gender }) => {
             toast({
               title: "Hej! 🙋‍♂️",
-              description: `Witaj ${name}! ${
-                gender !== "other"
-                  ? `Cieszę się że wysłał${
-                      gender === "man" ? "eś" : "aś"
-                    } ten formularz!`
-                  : "Cieszę się że formularz został wysłany!"
-              }`,
+              description:
+                (name === ""
+                  ? `Cześć tajemnicz${gender === "man" ? "y" : "a"} nieznajom${
+                      gender === "man" ? "y" : "a"
+                    }!`
+                  : `Witaj ${name}!`) +
+                `${` Cieszę się, że wysłał${
+                  gender === "man" ? "eś" : "aś"
+                } ten formularz!`}`,
               status: "success",
               duration: 5000,
               isClosable: true,
@@ -79,7 +103,6 @@ const SimpleTest = () => {
                       <Select {...field} placeholder="-">
                         <option value="man">Mężczyzna</option>
                         <option value="woman">Kobieta</option>
-                        <option value="other">Inny</option>
                       </Select>
                     </FormControl>
                   )}
@@ -93,12 +116,13 @@ const SimpleTest = () => {
                   )}
                 </Field>
                 <Button
-                  disabled={!values.gender || !values.name}
+                  disabled={!values.gender}
                   width="100%"
                   mt={4}
+                  colorScheme="teal"
                   type="submit"
                 >
-                  Wyślij 🚀
+                  Wyślij
                 </Button>
               </Form>
             );

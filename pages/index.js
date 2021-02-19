@@ -62,7 +62,7 @@ export default function Home() {
               <ListItem>Kontrolowanie API</ListItem>
             </Link>
           </OrderedList>
-          <ListItem>Podstawowe funkcje w cypressie</ListItem>
+          <ListItem>Debuggowanie</ListItem>
         </OrderedList>
       </Container>
     </div>
