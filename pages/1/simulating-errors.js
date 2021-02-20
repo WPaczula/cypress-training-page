@@ -119,7 +119,7 @@ const SimulatingErrors = () => {
                   toast({
                     title: "Błąd",
                     description: `Nie udało się przesłać ${amount}PLN z uwagi na brak środków na koncie`,
-                    duration: 3000,
+                    duration: 5000,
                     isClosable: true,
                     status: "error",
                   });
@@ -130,7 +130,7 @@ const SimulatingErrors = () => {
                   toast({
                     title: "Błąd",
                     description: `Nie udało się znaleźć odbiorcy o numerze telefonu ${phone}`,
-                    duration: 3000,
+                    duration: 5000,
                     isClosable: true,
                     status: "error",
                   });
