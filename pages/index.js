@@ -47,20 +47,24 @@ export default function Home() {
           Przewodnik po ćwiczeniach
         </Heading>
         <OrderedList start={0}>
-          <Link href="/0/move-command">
-            <ListItem>Dodaj login command</ListItem>
-          </Link>
-          <ListItem>Pisanie testów</ListItem>
+          <ListItem>
+            <Link href="/0/move-command">Dodaj login command</Link>
+          </ListItem>
+          <ListItem>
+            <Link href="/1/helpers">Pisanie testów</Link>
+          </ListItem>
           <OrderedList>
-            <Link href="/1/simple-test">
-              <ListItem>Wykorzystanie podstawowych funkcji</ListItem>
-            </Link>
-            <Link href="/1/edit-save">
-              <ListItem>Edycja danych i ich zapis</ListItem>
-            </Link>
-            <Link href="/1/simulating-errors">
-              <ListItem>Kontrolowanie API</ListItem>
-            </Link>
+            <ListItem>
+              <Link href="/1/simple-test">
+                Wykorzystanie podstawowych funkcji
+              </Link>
+            </ListItem>
+            <ListItem>
+              <Link href="/1/edit-save">Edycja danych i ich zapis</Link>
+            </ListItem>
+            <ListItem>
+              <Link href="/1/simulating-requests">Kontrolowanie API</Link>
+            </ListItem>
           </OrderedList>
           <ListItem>Debuggowanie</ListItem>
         </OrderedList>

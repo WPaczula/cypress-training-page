@@ -58,7 +58,7 @@ const SimulatingErrors = () => {
           Test case 1
         </Heading>
         <OrderedList mt={4}>
-          <ListItem>Wejdź na stronę /1/simulating-errors</ListItem>
+          <ListItem>Wejdź na stronę /1/simulating-requests</ListItem>
           <ListItem>Wypełnij kwotę</ListItem>
           <ListItem>Wypełnij numer telefonu</ListItem>
           <ListItem>
@@ -77,7 +77,7 @@ const SimulatingErrors = () => {
           Test case 2
         </Heading>
         <OrderedList mt={4}>
-          <ListItem>Wejdź na stronę /1/simulating-errors</ListItem>
+          <ListItem>Wejdź na stronę /1/simulating-requests</ListItem>
           <ListItem>Wypełnij kwotę</ListItem>
           <ListItem>Wypełnij numer telefonu</ListItem>
           <ListItem>Wyślij formularz przyciskiem "Prześlij blikiem"</ListItem>
@@ -94,7 +94,7 @@ const SimulatingErrors = () => {
           Test case 3
         </Heading>
         <OrderedList mt={4}>
-          <ListItem>Wejdź na stronę /1/simulating-errors</ListItem>
+          <ListItem>Wejdź na stronę /1/simulating-requests</ListItem>
           <ListItem>Wypełnij kwotę</ListItem>
           <ListItem>Wypełnij numer telefonu</ListItem>
           <ListItem>Wyślij formularz przyciskiem "Prześlij blikiem"</ListItem>
