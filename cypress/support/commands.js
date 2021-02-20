@@ -1,3 +1,5 @@
+import loginSelectors from "../selectors/login";
+
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
@@ -23,3 +25,9 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+Cypress.Commands.add("login", () => {
+  loginSelectors.emailInput().type("test@user.com");
+  loginSelectors.passwordInput().type("Password123");
+  loginSelectors.loginButton().click();
+});
