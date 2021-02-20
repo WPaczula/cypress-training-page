@@ -89,7 +89,8 @@ const EditSave = () => {
           <ListItem>Wyczyść input "Liczba emoji"</ListItem>
           <ListItem>Odrzuć zmiany za pomocą przycisku "Anuluj"</ListItem>
           <ListItem>
-            Spodziewany rezultat: Liczba emoji pozostaje bez zmian.
+            Spodziewany rezultat: Liczba emoji pozostaje bez zmian, ale one same
+            się zmieniają
           </ListItem>
         </OrderedList>
       </Container>
@@ -178,7 +179,12 @@ const EditSave = () => {
                 Twoje {numberOfEmojis} emoji
               </Heading>
               <Text fontSize="25px" textAlign="center" mt={4}>
-                {new Array(numberOfEmojis).fill().map(getRandomEmoji).join(" ")}
+                {new Array(numberOfEmojis)
+                  .fill()
+                  .map(getRandomEmoji)
+                  .map((e) => (
+                    <span>{e}</span>
+                  ))}
               </Text>
             </>
           )}
