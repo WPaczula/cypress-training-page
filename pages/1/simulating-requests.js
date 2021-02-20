@@ -32,11 +32,12 @@ const SimulatingErrors = () => {
     <>
       <MainPageLink />
       <Container>
-        <Heading color="teal">Kontrolowane wybuchy 💥</Heading>
+        <Heading color="teal">Symulowanie błędów 💥</Heading>
         <Text mt={8}>
           Wyobraź sobie, że twoja aplikacja korzysta z third party API na które
           nie masz wpływu lub chciałbyś sprawdzić jak się zachowa po uzyskaniu
-          konkretnego statusu błędu 🤔
+          konkretnego statusu błędu lub nie chcesz korzystać z niego w testach,
+          bo na przykład każdy request jest płatny 🤔
         </Text>
         <Text mt={4}>
           Cypress pozwala na przechwytywanie requestów przeglądarki i zwracanie
@@ -60,6 +61,25 @@ const SimulatingErrors = () => {
           <ListItem>Wejdź na stronę /1/simulating-errors</ListItem>
           <ListItem>Wypełnij kwotę</ListItem>
           <ListItem>Wypełnij numer telefonu</ListItem>
+          <ListItem>
+            Wyślij formularz przyciskiem "Prześlij blikiem" (w tym przypadku nie
+            symuluj odpowiedzi, wykorzystaj faktyczny request)
+          </ListItem>
+          <ListItem>
+            Spodziewany rezultat: Jeżeli numer telefonu istnieje i przelew
+            został zrobiony użytkownik powinien zobaczyć informację o treści
+            "Kwota *KWOTA*PLN została poprawnie przelana na numer *NUMER*"
+          </ListItem>
+        </OrderedList>
+      </Container>
+      <Container mt={4}>
+        <Heading size="md" color="teal">
+          Test case 2
+        </Heading>
+        <OrderedList mt={4}>
+          <ListItem>Wejdź na stronę /1/simulating-errors</ListItem>
+          <ListItem>Wypełnij kwotę</ListItem>
+          <ListItem>Wypełnij numer telefonu</ListItem>
           <ListItem>Wyślij formularz przyciskiem "Prześlij blikiem"</ListItem>
           <ListItem>
             Spodziewany rezultat: Jeżeli numer telefonu nie istnieje (status 404
@@ -71,7 +91,7 @@ const SimulatingErrors = () => {
       </Container>
       <Container mt={4}>
         <Heading size="md" color="teal">
-          Test case 2
+          Test case 3
         </Heading>
         <OrderedList mt={4}>
           <ListItem>Wejdź na stronę /1/simulating-errors</ListItem>
@@ -105,7 +125,7 @@ const SimulatingErrors = () => {
               .then(() => {
                 toast({
                   title: "Sukces",
-                  description: `Kwota ${amount} PLN została poprawnie przelana na numer ${phone}`,
+                  description: `Kwota ${amount}PLN została poprawnie przelana na numer ${phone}`,
                   duration: 3000,
                   isClosable: true,
                   status: "success",
