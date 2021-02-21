@@ -2,7 +2,7 @@ import simulatingRequestsSelectors from "../../selectors/simulating-requests";
 
 describe("Simulating requests", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:3000/1/simulating-requests");
+    cy.visit("http://localhost:3000/2/simulating-requests");
     cy.login();
   });
 
