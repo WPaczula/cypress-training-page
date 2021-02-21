@@ -66,7 +66,9 @@ export default function Home() {
               <Link href="/1/simulating-requests">Kontrolowanie API</Link>
             </ListItem>
           </OrderedList>
-          <ListItem>Debuggowanie</ListItem>
+          <ListItem>
+            <Link href="/2/edit-save">Zmiany w testach</Link>
+          </ListItem>
         </OrderedList>
       </Container>
     </div>

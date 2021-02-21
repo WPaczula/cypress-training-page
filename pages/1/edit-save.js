@@ -183,7 +183,7 @@ const EditSave = () => {
                   .fill()
                   .map(getRandomEmoji)
                   .map((e) => (
-                    <span>{e}</span>
+                    <span key={e}>{e}</span>
                   ))}
               </Text>
             </>

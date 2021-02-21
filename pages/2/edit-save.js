@@ -59,7 +59,7 @@ const EditSave = () => {
           Test case 1
         </Heading>
         <OrderedList mt={4}>
-          <ListItem>Wejdź na stronę /1/edit-save</ListItem>
+          <ListItem>Wejdź na stronę /2/edit-save</ListItem>
           <ListItem>Wczytaj liczbę emoji</ListItem>
           <ListItem>Wejdź w tryb edycji za pomocą przycisku "Edytuj"</ListItem>
           <ListItem>Zwiększ liczbę o 1 za pomocą strzałki w górę</ListItem>
@@ -77,7 +77,7 @@ const EditSave = () => {
           Test case 2
         </Heading>
         <OrderedList mt={4}>
-          <ListItem>Wejdź na stronę /1/edit-save</ListItem>
+          <ListItem>Wejdź na stronę /2/edit-save</ListItem>
           <ListItem>Wczytaj liczbę emoji</ListItem>
           <ListItem>Wejdź w tryb edycji za pomocą przycisku "Edytuj"</ListItem>
           <ListItem>Wyczyść input "Liczba emoji"</ListItem>
@@ -182,7 +182,9 @@ const EditSave = () => {
                     .fill()
                     .map(getRandomEmoji)
                     .map((e) => (
-                      <span style={{ fontSize: "24px" }}>{e}</span>
+                      <span key={e} style={{ fontSize: "24px" }}>
+                        {e}
+                      </span>
                     ))}
                 </Flex>
               </Box>
