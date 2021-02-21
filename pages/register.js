@@ -53,11 +53,12 @@ const Register = () => {
   const [registerError, setRegisterError] = useState("");
   const { signUp } = useFirebaseAuth();
 
-  const handleRegister = ({ email, password }) => {
+  const handleRegister = ({ email, password }, errorCallback) => {
     setRegisterError("");
 
     return signUp(email, password).catch((error) => {
       setRegisterError(error.message);
+      errorCallback();
     });
   };
 
@@ -85,9 +86,7 @@ const Register = () => {
                   if (!Object.values(errors).length) {
                     setSubmitting(true);
 
-                    handleRegister(values).then(() => {
-                      setSubmitting(false);
-                    });
+                    handleRegister(values, () => setSubmitting(false));
                   }
                 })
                 .then(() => {

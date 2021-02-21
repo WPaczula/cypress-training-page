@@ -36,11 +36,12 @@ const login = () => {
   const [loginError, setLoginError] = useState("");
   const { signIn } = useFirebaseAuth();
 
-  const handleLogin = ({ email, password }) => {
+  const handleLogin = ({ email, password }, errorCallback) => {
     setLoginError("");
 
     return signIn(email, password).catch((error) => {
       setLoginError(error.message);
+      errorCallback();
     });
   };
 
@@ -66,9 +67,7 @@ const login = () => {
                 .then((errors) => {
                   if (!Object.values(errors).length) {
                     setSubmitting(true);
-                    handleLogin(values).then(() => {
-                      setSubmitting(false);
-                    });
+                    handleLogin(values, () => setSubmitting(false));
                   }
                 })
                 .then(() => {

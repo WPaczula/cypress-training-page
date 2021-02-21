@@ -1,5 +1,7 @@
 // 🐼 Aby znaleźć element cypress wykorzystuje cssowe selektory i przechodzenie pomiędzy elementami na różne sposoby
-// poniżej opisane są metody, które mogą ci się przydać do realizacji ćwiczeń
+// poniżej opisane są metody, które mogą ci się przydać do realizacji ćwiczeń. Jeżeli czujesz, że selektor jest niepewny
+// możesz go przetestować w przeglądarce. Otwóz devtoolsy na stronie (F11), przejdź do konsoli i wpisz $(TWOJ_SELEKTOR).
+// Metoda ta zwróci ci rezultat twojego selektora.
 
 // ============================ METODA GET ============================
 
