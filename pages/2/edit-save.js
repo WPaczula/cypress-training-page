@@ -42,7 +42,7 @@ const EditSave = () => {
     <>
       <MainPageLink />
       <Container>
-        <Heading color="teal">Dziwne wcześniej działało</Heading>
+        <Heading color="teal">Dziwne, wcześniej działało 🤔</Heading>
         <Text mt={8} textAlign="justify">
           Pewną rzeczą jest, że wraz z rozwojem aplikacji niektóre testy
           przestaną działać. Stwórz identyczny plik testowy jak dla drugiego

@@ -35,7 +35,7 @@ const SimulatingErrors = () => {
         <Heading color="teal">Zmiany domenowe</Heading>
         <Text mt={8}>
           W tym ćwiczeniu postaraj się poznane metody debuggowania, żeby
-          sprawdzić jakie zmiany zostały wprowadzone i napraw testy
+          sprawdzić jakie zmiany zostały wprowadzone i napraw testy.
         </Text>
       </Container>
       <Container mt={4}>
@@ -43,7 +43,7 @@ const SimulatingErrors = () => {
           Test case 1
         </Heading>
         <OrderedList mt={4}>
-          <ListItem>Wejdź na stronę /1/simulating-requests</ListItem>
+          <ListItem>Wejdź na stronę /2/simulating-requests</ListItem>
           <ListItem>Wypełnij kwotę</ListItem>
           <ListItem>Wypełnij numer telefonu</ListItem>
           <ListItem>
@@ -62,7 +62,7 @@ const SimulatingErrors = () => {
           Test case 2
         </Heading>
         <OrderedList mt={4}>
-          <ListItem>Wejdź na stronę /1/simulating-requests</ListItem>
+          <ListItem>Wejdź na stronę /2/simulating-requests</ListItem>
           <ListItem>Wypełnij kwotę</ListItem>
           <ListItem>Wypełnij numer telefonu</ListItem>
           <ListItem>Wyślij formularz przyciskiem "Prześlij blikiem"</ListItem>
@@ -129,7 +129,7 @@ const SimulatingErrors = () => {
                     status: "error",
                   });
                 } else if (
-                  e.response.data.code === "phone_number_not_found" &&
+                  e.response.data.code === "number_not_found" &&
                   e.response.status === 404
                 ) {
                   toast({
