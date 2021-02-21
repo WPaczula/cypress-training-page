@@ -1,4 +1,4 @@
-import simulatingRequestsSelectors from "../selectors/simulating-requests";
+import simulatingRequestsSelectors from "../../selectors/simulating-requests";
 
 describe("Simulating requests", () => {
   beforeEach(() => {

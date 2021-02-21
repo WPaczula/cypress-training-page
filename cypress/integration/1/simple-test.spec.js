@@ -1,4 +1,4 @@
-import simpleTestSelectors from "../selectors/simple-test";
+import simpleTestSelectors from "../../selectors/simple-test";
 
 describe("Simple test", () => {
   beforeEach(() => {

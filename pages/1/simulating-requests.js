@@ -109,7 +109,7 @@ const SimulatingErrors = () => {
       </Container>
       <Container mb={64}>
         <Formik
-          initialValues={{ amount: 1, phone: "" }}
+          initialValues={{ amount: "", phone: "" }}
           onSubmit={({ amount, phone }, { setSubmitting }) => {
             setSubmitting(true);
             axios

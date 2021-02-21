@@ -4,6 +4,12 @@ const editSaveSelectors = {
       .contains(/Twoje \d+ emoji/)
       .next()
       .children(),
+  newEmojis: () =>
+    cy
+      .contains(/Twoje \d+ emoji/)
+      .next()
+      .next()
+      .invoke("text"),
   editButton: () => cy.contains('[type="button"]', "Edytuj"),
   emojiIncreaseArrow: () =>
     cy.get('[name="numberOfEmojis"]').next().children().eq(0),
