@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useFirebaseAuth } from "../firebase/provider";
 import { useRouter } from "next/router";
 import { Flex, Spinner, usePrevious } from "@chakra-ui/react";
+import { isPublic } from "../utils/public";
 
 const Loading = () => (
   <Flex
@@ -28,7 +29,7 @@ const AuthGatekeeper = React.memo(({ children }) => {
 
   useEffect(() => {
     if (user === false) {
-      if (router.pathname !== "/login" && router.pathname !== "/register") {
+      if (!isPublic(router.pathname)) {
         setReferer(router.pathname);
         router.push("/login");
       }
@@ -37,12 +38,8 @@ const AuthGatekeeper = React.memo(({ children }) => {
 
   const previousUserState = usePrevious(user);
   useEffect(() => {
-    if (
-      !previousUserState &&
-      !!user &&
-      (router.pathname === "/login" || router.pathname === "/register")
-    ) {
-      if (referer !== "/login" && referer !== "/register") {
+    if (!previousUserState && !!user && isPublic(router.pathname)) {
+      if (!isPublic(referer)) {
         router.push(referer || "/");
       } else {
         router.push("/");
@@ -55,10 +52,8 @@ const AuthGatekeeper = React.memo(({ children }) => {
   }
 
   if (
-    (router.pathname !== "/login" &&
-      router.pathname !== "/register" &&
-      user === false) ||
-    ((router.pathname === "/login" || router.pathname === "/register") && user)
+    (!isPublic(router.pathname) && user === false) ||
+    (isPublic(router.pathname) && user)
   ) {
     return <Loading />;
   }

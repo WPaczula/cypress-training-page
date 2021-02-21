@@ -68,6 +68,14 @@ export default function Home() {
           </OrderedList>
           <ListItem>
             <Link href="/2/edit-save">Zmiany w testach</Link>
+            <OrderedList>
+              <ListItem>
+                <Link>Ćwiczenia w debugowaniu</Link>
+              </ListItem>
+            </OrderedList>
+          </ListItem>
+          <ListItem>
+            <Link href="/setup">Zrób to sam</Link>
           </ListItem>
         </OrderedList>
       </Container>
