@@ -6,14 +6,13 @@ describe("Edit save", () => {
     cy.login();
   });
 
-  it.only("should increase number of emojis by 1 using arrow", () => {
+  it("should increase number of emojis by 1 using arrow", () => {
     editSaveSelectors.emojis().its("length").as("initialLength");
 
     editSaveSelectors.editButton().click();
     editSaveSelectors.emojiIncreaseArrow().click();
     editSaveSelectors.notRobotCheckbox().check({ force: true });
     editSaveSelectors.saveButton().click();
-    debugger;
 
     cy.get("@initialLength").then((initialLength) => {
       editSaveSelectors

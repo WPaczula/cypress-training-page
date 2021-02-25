@@ -11,9 +11,9 @@ const Helpers = () => {
         <Heading color="teal">Spis użytecznych komend</Heading>
         <Text mt={4} textAlign="justify">
           Jeżeli będziesz chciał sobie przypomnieć komendy lub sposób pisania
-          asercji/budowę testu odwiedź folder <Code>help/1</Code> w tej solucji.
-          Jeżeli czegoś w nim nie znajdziesz powiedz mi a ja postaram ci się
-          pomóc i dodać to od razu dla potomnych 😄
+          asercji/budowę testu odwiedź folder <Code>__CHEATSHEET__/1</Code> w
+          tej solucji. Jeżeli czegoś w nim nie znajdziesz powiedz mi a ja
+          postaram ci się pomóc i dodać to od razu dla potomnych 😄
         </Text>
       </Container>
     </>
