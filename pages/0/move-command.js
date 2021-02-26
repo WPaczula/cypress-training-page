@@ -9,9 +9,9 @@ const MoveCommand = () => {
       <MainPageLink />
       <Heading color="teal">0. Dodaj login command 📦</Heading>
       <Text mt={8} textAlign="justify">
-        Tworzenenie reużywalnych komandów w cypressie to dobry sposób na{" "}
-        <strong>uniknięcie duplikacji</strong> kodu! Oprócz tego można także
-        wydzielić funkcję javascriptową i tam włożyć swoją logikę.
+        Tworzenie reużywalnych komend w cypressie to dobry sposób na{" "}
+        <strong>uniknięcie duplikacji</strong> kodu! Zamiast tego można także
+        wydzielić funkcję javascriptową i tam włożyć swoją logikę, co wolisz 😄
       </Text>
       <Text textAlign="justify" mt={4}>
         Jak ocenić czy tworzyć funkcję czy dodać command? Dla mnie sprawdzało
