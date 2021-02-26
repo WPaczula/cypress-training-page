@@ -176,7 +176,7 @@ const EditSave = () => {
                 Edytuj
               </Button>
               <Heading textAlign="center" color="teal">
-                Twoje {numberOfEmojis} emoji
+                Twoje emoji
               </Heading>
               <Text fontSize="25px" textAlign="center" mt={4}>
                 {new Array(numberOfEmojis)
