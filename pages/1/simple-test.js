@@ -52,7 +52,7 @@ const SimpleTest = () => {
           <ListItem>Wpisz imię - Jan</ListItem>
           <ListItem>Wyślij formularz przyciskiem "Wyślij"</ListItem>
           <ListItem>
-            Spodziewany rezultat: Zostaje wyświetlony toast z powitaniem: "Witaj
+            Spodziewany rezultat: Zostaje wyświetlony komunikat z powitaniem: "Witaj
             Jan! Cieszę się, że wysłałeś ten formularz!"
           </ListItem>
         </OrderedList>
@@ -67,7 +67,7 @@ const SimpleTest = () => {
           <ListItem>Pozostaw imię puste</ListItem>
           <ListItem>Wyślij formularz przyciskiem "Wyślij"</ListItem>
           <ListItem>
-            Spodziewany rezultat: Zostaje wyświetlony toast z powitaniem: "Cześć
+            Spodziewany rezultat: Zostaje wyświetlony komunikat z powitaniem: "Cześć
             tajemnicza nieznajoma! Cieszę się że wysłałaś ten formularz!"
           </ListItem>
         </OrderedList>
