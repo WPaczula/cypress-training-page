@@ -26,7 +26,7 @@ const MoveCommand = () => {
       </Text>
       <Text mt={4} textAlign="justify">
         Do dzieła! 🚀 Stwórz nową komendę cypressa, która pozwoli zalogować
-        użytkownika. Będziemy jej potrzebować w każdym teście na stronach za
+        użytkownika. Będziemy jej potrzebować w każdym teście na stronach z
         autentykacją. Poniżej znajdziesz templatkę:
       </Text>
       <Code width="100%" mt={4}>
