@@ -27,13 +27,16 @@ const MoveCommand = () => {
       <Text mt={4} textAlign="justify">
         Do dzieła! 🚀 Stwórz nową komendę cypressa, która pozwoli zalogować
         użytkownika. Będziemy jej potrzebować w każdym teście na stronach z
-        autentykacją. Poniżej znajdziesz templatkę:
+        autentykacją. Poniżej znajdziesz templatkę, której możes zużyć w folderze <Code>/support/commands.js</Code>:
       </Text>
       <Code width="100%" mt={4}>
         <Text>{`Cypress.Commands.add('COMMAND_NAME', (...ARGUMENTS) => {`}</Text>
         <Text>&emsp;{`// BODY OF THE COMMAND`}</Text>
         <Text>{`})`}</Text>
       </Code>
+      <Text mt={4} textAlign="justify">
+        Po stworzeniu komendy użyj jej w swoim teście logowania!
+      </Text>
     </Container>
   );
 };
