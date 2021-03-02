@@ -1,4 +1,4 @@
-import simulatingRequestsSelectors from "../../selectors/simulating-requests";
+import simulatingRequestsPage from "../../page-object/simulating-requests";
 
 describe("Simulating requests", () => {
   beforeEach(() => {
@@ -7,30 +7,30 @@ describe("Simulating requests", () => {
   });
 
   it("should show information if blik succeeded", () => {
-    cy.intercept("POST", "/api/blik").as("lackOfFunds");
+    cy.intercept("POST", "/api/v2/blik").as("lackOfFunds");
     const amount = 50;
     const phone = "123-123-123";
 
-    simulatingRequestsSelectors.ammountInput().type(amount);
-    simulatingRequestsSelectors.phoneInput().type(phone);
-    simulatingRequestsSelectors.sendButton().click();
+    simulatingRequestsPage.ammountInput().clear().type(amount);
+    simulatingRequestsPage.phoneInput().type(phone);
+    simulatingRequestsPage.sendButton().click();
     cy.wait("@lackOfFunds");
 
     cy.contains(
-      `Kwota ${amount}PLN została poprawnie przelana na numer ${phone}`
+      `Kwota ${amount}PLN z twojego konta została poprawnie przelana na numer ${phone}`
     ).should("be.visible");
   });
 
   it("should show information if blik failed due to not found phone number", () => {
-    cy.intercept("POST", "/api/blik", {
+    cy.intercept("POST", "/api/v2/blik", {
       fixture: "simulating-errors/not-found.json",
       statusCode: 404,
     }).as("notFound");
     const phone = "123-123-123";
 
-    simulatingRequestsSelectors.ammountInput().type(50);
-    simulatingRequestsSelectors.phoneInput().type(phone);
-    simulatingRequestsSelectors.sendButton().click();
+    simulatingRequestsPage.ammountInput().clear().type(50);
+    simulatingRequestsPage.phoneInput().type(phone);
+    simulatingRequestsPage.sendButton().click();
     cy.wait("@notFound");
 
     cy.contains(
@@ -39,15 +39,15 @@ describe("Simulating requests", () => {
   });
 
   it("should show information if blik failed due to lack of funds", () => {
-    cy.intercept("POST", "/api/blik", {
+    cy.intercept("POST", "/api/v2/blik", {
       fixture: "simulating-errors/lack-of-funds.json",
       statusCode: 403,
     }).as("lackOfFunds");
     const amount = 50;
 
-    simulatingRequestsSelectors.ammountInput().type(amount);
-    simulatingRequestsSelectors.phoneInput().type("123-123-123");
-    simulatingRequestsSelectors.sendButton().click();
+    simulatingRequestsPage.ammountInput().clear().type(amount);
+    simulatingRequestsPage.phoneInput().type("123-123-123");
+    simulatingRequestsPage.sendButton().click();
     cy.wait("@lackOfFunds");
 
     cy.contains(

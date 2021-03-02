@@ -1,4 +1,4 @@
-const simpleTestSelectors = {
+const simpleTestPage = {
   genderSelect: () => cy.get('[name="gender"]'),
   nameInput: () => cy.get('[name="name"]'),
   sendButton: () => cy.get('[type="submit"]'),
@@ -10,4 +10,4 @@ const simpleTestSelectors = {
     ),
 };
 
-export default simpleTestSelectors;
+export default simpleTestPage;

@@ -1,4 +1,4 @@
-import editSaveSelectors from "../../selectors/edit-save";
+import editSavePage from "../../page-object/edit-save";
 
 describe("Edit save", () => {
   beforeEach(() => {
@@ -7,35 +7,35 @@ describe("Edit save", () => {
   });
 
   it("should increase number of emojis by 1 using arrow", () => {
-    editSaveSelectors.emojis().its("length").as("initialLength");
+    editSavePage.newEmojis().its("length").as("initialLength");
 
-    editSaveSelectors.editButton().click();
-    editSaveSelectors.emojiIncreaseArrow().click();
-    editSaveSelectors.notRobotCheckbox().check({ force: true });
-    editSaveSelectors.saveButton().click();
+    editSavePage.editButton().click();
+    editSavePage.emojiIncreaseArrow().click();
+    editSavePage.notRobotCheckbox().check({ force: true });
+    editSavePage.saveButton().click();
 
     cy.get("@initialLength").then((initialLength) => {
-      editSaveSelectors
-        .emojis()
+      editSavePage
+        .newEmojis()
         .its("length")
         .should("equal", initialLength + 1);
     });
   });
 
   it("should not change the number of emojis if cancel button is pressed", () => {
-    editSaveSelectors.emojis().its("length").as("initialLength");
-    editSaveSelectors.emojis().invoke("text").as("initialEmojis");
+    editSavePage.newEmojis().its("length").as("initialLength");
+    editSavePage.newEmojis().invoke("text").as("initialEmojis");
 
-    editSaveSelectors.editButton().click();
-    editSaveSelectors.emojiIncreaseArrow().click();
-    editSaveSelectors.cancelButton().click();
+    editSavePage.editButton().click();
+    editSavePage.emojiIncreaseArrow().click();
+    editSavePage.cancelButton().click();
 
     cy.get("@initialLength").then((initialLength) => {
-      editSaveSelectors.emojis().its("length").should("equal", initialLength);
+      editSavePage.newEmojis().its("length").should("equal", initialLength);
     });
     cy.get("@initialEmojis").then((initialEmojis) => {
-      editSaveSelectors
-        .emojis()
+      editSavePage
+        .newEmojis()
         .invoke("text")
         .should("not.equal", initialEmojis);
     });

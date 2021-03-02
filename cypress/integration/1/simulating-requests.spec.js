@@ -1,4 +1,4 @@
-import simulatingRequestsSelectors from "../../selectors/simulating-requests";
+import simulatingRequestsPage from "../../page-object/simulating-requests";
 
 describe("Simulating requests", () => {
   beforeEach(() => {
@@ -11,9 +11,9 @@ describe("Simulating requests", () => {
     const amount = 50;
     const phone = "123-123-123";
 
-    simulatingRequestsSelectors.ammountInput().type(amount);
-    simulatingRequestsSelectors.phoneInput().type(phone);
-    simulatingRequestsSelectors.sendButton().click();
+    simulatingRequestsPage.ammountInput().type(amount);
+    simulatingRequestsPage.phoneInput().type(phone);
+    simulatingRequestsPage.sendButton().click();
     cy.wait("@lackOfFunds");
 
     cy.contains(
@@ -28,9 +28,9 @@ describe("Simulating requests", () => {
     }).as("notFound");
     const phone = "123-123-123";
 
-    simulatingRequestsSelectors.ammountInput().type(50);
-    simulatingRequestsSelectors.phoneInput().type(phone);
-    simulatingRequestsSelectors.sendButton().click();
+    simulatingRequestsPage.ammountInput().type(50);
+    simulatingRequestsPage.phoneInput().type(phone);
+    simulatingRequestsPage.sendButton().click();
     cy.wait("@notFound");
 
     cy.contains(
@@ -45,9 +45,9 @@ describe("Simulating requests", () => {
     }).as("lackOfFunds");
     const amount = 50;
 
-    simulatingRequestsSelectors.ammountInput().type(amount);
-    simulatingRequestsSelectors.phoneInput().type("123-123-123");
-    simulatingRequestsSelectors.sendButton().click();
+    simulatingRequestsPage.ammountInput().type(amount);
+    simulatingRequestsPage.phoneInput().type("123-123-123");
+    simulatingRequestsPage.sendButton().click();
     cy.wait("@lackOfFunds");
 
     cy.contains(

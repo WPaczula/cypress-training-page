@@ -1,4 +1,4 @@
-import simpleTestSelectors from "../../selectors/simple-test";
+import simpleTestPage from "../../page-object/simple-test";
 
 describe("Simple test", () => {
   beforeEach(() => {
@@ -10,19 +10,19 @@ describe("Simple test", () => {
     const name = "Jan";
     const gender = "Mężczyzna";
 
-    simpleTestSelectors.genderSelect().select(gender);
-    simpleTestSelectors.nameInput().type(name);
-    simpleTestSelectors.sendButton().click();
+    simpleTestPage.genderSelect().select(gender);
+    simpleTestPage.nameInput().type(name);
+    simpleTestPage.sendButton().click();
 
-    simpleTestSelectors.helloManToast(name).should("be.visible");
+    simpleTestPage.helloManToast(name).should("be.visible");
   });
 
   it("should display welcome message for man with a name", () => {
     const gender = "Kobieta";
 
-    simpleTestSelectors.genderSelect().select(gender);
-    simpleTestSelectors.sendButton().click();
+    simpleTestPage.genderSelect().select(gender);
+    simpleTestPage.sendButton().click();
 
-    simpleTestSelectors.helloUnknownWomanToast().should("be.visible");
+    simpleTestPage.helloUnknownWomanToast().should("be.visible");
   });
 });

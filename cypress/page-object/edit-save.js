@@ -1,4 +1,4 @@
-const editSaveSelectors = {
+const editSavePage = {
   emojis: () =>
     cy
       .contains(/Twoje \d+ emoji/)
@@ -8,8 +8,8 @@ const editSaveSelectors = {
     cy
       .contains(/Twoje \d+ emoji/)
       .next()
-      .next()
-      .invoke("text"),
+      .children()
+      .children(),
   editButton: () => cy.contains('[type="button"]', "Edytuj"),
   emojiIncreaseArrow: () =>
     cy.get('[name="numberOfEmojis"]').next().children().eq(0),
@@ -18,4 +18,4 @@ const editSaveSelectors = {
   cancelButton: () => cy.contains('[type="button"]', "Anuluj"),
 };
 
-export default editSaveSelectors;
+export default editSavePage;

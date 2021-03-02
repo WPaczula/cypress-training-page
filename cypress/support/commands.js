@@ -1,4 +1,4 @@
-import loginSelectors from "../selectors/login";
+import loginPage from "../page-object/login";
 
 // ***********************************************
 // This example commands.js shows you how to
@@ -27,7 +27,7 @@ import loginSelectors from "../selectors/login";
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
 Cypress.Commands.add("login", () => {
-  loginSelectors.emailInput().type("test@user.com");
-  loginSelectors.passwordInput().type("Password123");
-  loginSelectors.loginButton().click();
+  loginPage.emailInput().type("test@user.com");
+  loginPage.passwordInput().type("Password123");
+  loginPage.loginButton().click();
 });
