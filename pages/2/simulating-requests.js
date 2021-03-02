@@ -35,7 +35,11 @@ const SimulatingErrors = () => {
         <Heading color="teal">Zmiany domenowe</Heading>
         <Text mt={8}>
           W tym ćwiczeniu postaraj się poznane metody debuggowania, żeby
-          sprawdzić jakie zmiany zostały wprowadzone i napraw testy.
+          naprawić testy. W tym przypadku zmieniła się domena w stosunku do
+          wcześniejszego ćwiczenia, a testy są już "zastane", napisane przez
+          kolegę z zespołu. Została zaimplementowana również maksymalna kwota
+          500PLN na jednego blika. Zmieniły się także nieco komunikaty dla
+          użytkowników.
         </Text>
       </Container>
       <Container mt={4}>
@@ -46,14 +50,12 @@ const SimulatingErrors = () => {
           <ListItem>Wejdź na stronę /2/simulating-requests</ListItem>
           <ListItem>Wypełnij kwotę</ListItem>
           <ListItem>Wypełnij numer telefonu</ListItem>
-          <ListItem>
-            Wyślij formularz przyciskiem "Prześlij blikiem" (w tym przypadku nie
-            symuluj odpowiedzi, wykorzystaj faktyczny request)
-          </ListItem>
+          <ListItem>Wyślij formularz przyciskiem "Prześlij blikiem"</ListItem>
           <ListItem>
             Spodziewany rezultat: Jeżeli numer telefonu istnieje i przelew
-            został zrobiony użytkownik powinien zobaczyć informację o treści
-            "Kwota *KWOTA*PLN została poprawnie przelana na numer *NUMER*"
+            został zrobiony (status 200) użytkownik powinien zobaczyć informację
+            o treści "Kwota *KWOTA*PLN z twojego konta została poprawnie
+            przelana na numer *NUMER*"
           </ListItem>
         </OrderedList>
       </Container>
@@ -94,7 +96,7 @@ const SimulatingErrors = () => {
       </Container>
       <Container mb={64}>
         <Formik
-          initialValues={{ amount: "1", phone: "" }}
+          initialValues={{ amount: "10", phone: "" }}
           onSubmit={({ amount, phone }, { setSubmitting }) => {
             setSubmitting(true);
             axios
@@ -111,7 +113,7 @@ const SimulatingErrors = () => {
                 toast({
                   title: "Sukces",
                   description: `Kwota ${amount}PLN z twojego konta została poprawnie przelana na numer ${phone}`,
-                  duration: 3000,
+                  duration: 5000,
                   isClosable: true,
                   status: "success",
                 });

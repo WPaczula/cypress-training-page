@@ -50,7 +50,9 @@ const SimulatingErrors = () => {
           Poniżej znajduje się strona, która symuluje realizację przelewu
           blikiem na dany numer telefonu. Z punktu widzenia biznesu załóżmy, że
           bardzo istotnym case'm jest sprawdzenie, że jeżeli przelew się nie
-          uda, użytkownik musi zobaczyć od razu informację o niepowodzeniu.
+          uda, użytkownik musi zobaczyć od razu informację o niepowodzeniu. Dla
+          test case'ów z niepowodzeniem użyj mocków dodanych poprzez{" "}
+          <Code>intercept</Code>
         </Text>
       </Container>
       <Container mt={4}>
@@ -61,14 +63,12 @@ const SimulatingErrors = () => {
           <ListItem>Wejdź na stronę /1/simulating-requests</ListItem>
           <ListItem>Wypełnij kwotę</ListItem>
           <ListItem>Wypełnij numer telefonu</ListItem>
-          <ListItem>
-            Wyślij formularz przyciskiem "Prześlij blikiem" (w tym przypadku nie
-            symuluj odpowiedzi, wykorzystaj faktyczny request)
-          </ListItem>
+          <ListItem>Wyślij formularz przyciskiem "Prześlij blikiem"</ListItem>
           <ListItem>
             Spodziewany rezultat: Jeżeli numer telefonu istnieje i przelew
-            został zrobiony użytkownik powinien zobaczyć informację o treści
-            "Kwota *KWOTA*PLN została poprawnie przelana na numer *NUMER*"
+            został zrobiony (status 200 po requeście w <Code>/api/blik</Code>)
+            użytkownik powinien zobaczyć informację o treści "Kwota *KWOTA*PLN
+            została poprawnie przelana na numer *NUMER*"
           </ListItem>
         </OrderedList>
       </Container>
@@ -83,9 +83,10 @@ const SimulatingErrors = () => {
           <ListItem>Wyślij formularz przyciskiem "Prześlij blikiem"</ListItem>
           <ListItem>
             Spodziewany rezultat: Jeżeli numer telefonu nie istnieje (status 404
-            i określone body <Code>{`{ code: "number_not_found" }`}</Code>)
-            użytkownik powinien zobaczyć informację o treści "Nie udało się
-            znaleźć odbiorcy o numerze telefonu *NUMER_TELEFONU*"
+            i określone body <Code>{`{ code: "number_not_found" }`}</Code> po
+            requeście w <Code>/api/blik</Code>) użytkownik powinien zobaczyć
+            informację o treści "Nie udało się znaleźć odbiorcy o numerze
+            telefonu *NUMER_TELEFONU*".
           </ListItem>
         </OrderedList>
       </Container>
