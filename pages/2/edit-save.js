@@ -170,7 +170,7 @@ const EditSave = () => {
                 Edytuj
               </Button>
               <Heading textAlign="center" color="teal">
-                Twoje {numberOfEmojis} emoji
+                Twoje emoji
               </Heading>
               <Box mt={4}>
                 <Flex
