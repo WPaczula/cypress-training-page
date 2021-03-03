@@ -1,0 +1,46 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "fixtures/*": [
+                "fixtures/*"
+            ],
+            "integration/*": [
+                "integration/*"
+            ],
+            "page-object/*": [
+                "page-object/*"
+            ],
+            "plugins/*": [
+                "plugins/*"
+            ],
+            "support/*": [
+                "support/*"
+            ],
+        },
+        "target": "es5",
+        "lib": [
+            "dom",
+            "dom.iterable",
+            "esnext"
+        ],
+        "allowJs": true,
+        "skipLibCheck": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "isolatedModules": false,
+        "noEmit": true,
+        "types": [
+            "cypress",
+            "@testing-library/cypress"
+        ]
+    },
+    "include": [
+        "**/*.ts",
+    ]
+}
