@@ -2,7 +2,7 @@ import registerPage from "../../page-object/register";
 
 describe("Register", () => {
   it.skip("should register the user if the data is valid", () => {
-    cy.visit("http://localhost:3000/register");
+    cy.visit("/register");
 
     registerPage.emailInput().type("test@user.com");
     registerPage.passwordInput().type("Password123");

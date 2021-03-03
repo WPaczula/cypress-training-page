@@ -2,7 +2,7 @@ import editSavePage from "../../page-object/edit-save";
 
 describe("Edit save", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:3000/2/edit-save");
+    cy.visit("/2/edit-save");
     cy.login();
   });
 
