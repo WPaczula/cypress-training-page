@@ -19,7 +19,7 @@ const Setup = () => {
             <Link href="https://nodejs.org/en/">node.jsa</Link>.
           </ListItem>
           <ListItem>
-            Stwórz nowy folder i zainicjuj tam manager npm - `npm init`
+            Stwórz nowy folder i zainicjuj tam manager npm - <Code>npm init</Code>
           </ListItem>
           <ListItem>
             Komenda instalacji będzie się różniła od projektu - jeżeli dodajesz
