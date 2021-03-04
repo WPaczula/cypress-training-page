@@ -1,2 +1,2 @@
 export const isPublic = (path) =>
-  path === "/login" || path === "/register" || path === "/setup";
+  path === "/login" || path === "/register";
