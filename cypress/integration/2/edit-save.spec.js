@@ -18,7 +18,7 @@ describe("Edit save", () => {
       editSavePage
         .newEmojis()
         .its("length")
-        .should("equal", initialLength + 1);
+        .should("have.length", initialLength + 1);
     });
   });
 
@@ -32,12 +32,6 @@ describe("Edit save", () => {
 
     cy.get("@initialLength").then((initialLength) => {
       editSavePage.newEmojis().its("length").should("equal", initialLength);
-    });
-    cy.get("@initialEmojis").then((initialEmojis) => {
-      editSavePage
-        .newEmojis()
-        .invoke("text")
-        .should("not.equal", initialEmojis);
     });
   });
 });

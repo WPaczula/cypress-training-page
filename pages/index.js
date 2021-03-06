@@ -67,11 +67,16 @@ export default function Home() {
             </ListItem>
           </OrderedList>
           <ListItem>
-            <Link href="/2/edit-save">Zmiany w testach</Link>
+            <Link href="/2/simple-test">Zmiany w testach</Link>
             <OrderedList>
+              <ListItem >
+                <Link href="/2/edit-save">
+                  Ćwiczenia w debugowaniu
+                </Link>
+              </ListItem>
               <ListItem>
                 <Link href="/2/simulating-requests">
-                  Ćwiczenia w debugowaniu
+                  Ćwiczenia w naprawianiu zmian domenowych
                 </Link>
               </ListItem>
             </OrderedList>
