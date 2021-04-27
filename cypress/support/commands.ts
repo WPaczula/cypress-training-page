@@ -1,10 +1,6 @@
 import loginPage from "../page-object/login";
 
 declare global {
-  interface Window {
-    renderOrders: Function
-  }
-
   namespace Cypress {
     interface Chainable {
       login: () => void
