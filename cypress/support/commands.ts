@@ -1,4 +1,4 @@
-import loginPage from "../page-object/login";
+import loginPage from "page-object/login";
 
 declare global {
   namespace Cypress {
