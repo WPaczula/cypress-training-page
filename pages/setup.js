@@ -19,6 +19,9 @@ const Setup = () => {
             <Link href="https://nodejs.org/en/">node.jsa</Link>.
           </ListItem>
           <ListItem>
+            Stwórz nowy folder i zainicjuj tam manager npm - <Code>npm init</Code>
+          </ListItem>
+          <ListItem>
             Komenda instalacji będzie się różniła od projektu - jeżeli dodajesz
             cypressa do istniejącej stronki użyj komendy{" "}
             <Code>npm i cypress --save-dev</Code>. Jeżeli będzie to twój osobny

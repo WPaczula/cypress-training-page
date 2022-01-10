@@ -49,7 +49,7 @@ const SimulatingErrors = () => {
         <Text>
           Poniżej znajduje się strona, która symuluje realizację przelewu
           blikiem na dany numer telefonu. Z punktu widzenia biznesu załóżmy, że
-          bardzo istotnym case'm jest sprawdzenie, że jeżeli przelew się nie
+          bardzo istotnym casem jest sprawdzenie, że jeżeli przelew się nie
           uda, użytkownik musi zobaczyć od razu informację o niepowodzeniu. Dla
           test case'ów z niepowodzeniem użyj mocków dodanych poprzez{" "}
           <Code>intercept</Code>

@@ -37,9 +37,9 @@ const SimulatingErrors = () => {
           W tym ćwiczeniu postaraj się poznane metody debuggowania, żeby
           naprawić testy. W tym przypadku zmieniła się domena w stosunku do
           wcześniejszego ćwiczenia, a testy są już "zastane", napisane przez
-          kolegę z zespołu. Została zaimplementowana również maksymalna kwota
+          kolegę z zespołu. Developer zaimplementował również maksymalną kwotę
           500PLN na jednego blika. Zmieniły się także nieco komunikaty dla
-          użytkowników.
+          użytkowników i wykorzystany endpoint.
         </Text>
       </Container>
       <Container mt={4}>
