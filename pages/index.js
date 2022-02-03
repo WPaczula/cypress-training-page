@@ -69,10 +69,8 @@ export default function Home() {
           <ListItem>
             <Link href="/2/simple-test">Zmiany w testach</Link>
             <OrderedList>
-              <ListItem >
-                <Link href="/2/edit-save">
-                  Ćwiczenia w debugowaniu
-                </Link>
+              <ListItem>
+                <Link href="/2/edit-save">Ćwiczenia w debugowaniu</Link>
               </ListItem>
               <ListItem>
                 <Link href="/2/simulating-requests">
@@ -82,7 +80,7 @@ export default function Home() {
             </OrderedList>
           </ListItem>
           <ListItem>
-            <Link href="/setup">Zrób to sam</Link>
+            <Link href="/3/files">Zewnętrzne biblioteki i pliki</Link>
           </ListItem>
         </OrderedList>
       </Container>
