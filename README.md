@@ -13,7 +13,7 @@ This repository contains the source code for the cypress training page together 
 
 This branch has a BDD test for login scenario using cucumber plugin. Steps to introduce BDD into your project:
 1. Install `cypress-cucumber-processor` by `npm i cypress-cucumber-processor -D` command
-2. Adjust the `cypress.json` file - add `"testFiles": "**/*.feature"` property
+2. Adjust the `cypress.json` file - add `"testFiles": "**/*.feature"` property and `package.json` file with `nonGlobalStepDefinitions` flag
 3. Add the cucumber plugin to the `plugins/index.js` file (check the content of this file in the repo)
 4. Create `common` directory in the `integration` folder and add shared steps (`given.steps.js`, `when.steps.js` and `then.steps.js`)
 5. Add a feature file with gherkin to the integration with a corresponding steps declaration folder. For example `login.feature` and `login/when.steps.js`.
