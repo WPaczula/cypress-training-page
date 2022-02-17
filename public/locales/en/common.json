@@ -96,7 +96,7 @@
       "2": "Fill amount input",
       "3": "Fill phone number input",
       "4": "Send with \"Send via BLIK\" button",
-      "5": "Expected result: If the phone number does not exist (status 404 and body { code: \"number_not_found\" } in \"/api/blik\") the user should see a message: \"We couldn't find the recipient with given phone number: *NUMER_TELEFONU*\"."
+      "5": "Expected result: If the phone number does not exist (status 404 and body { code: \"number_not_found\" } in \"/api/blik\") the user should see a message: \"We couldn't find the recipient with given phone number: *PHONE_NUMBER*\"."
     },
     "tc3": {
       "heading": "Test case 3",
@@ -104,7 +104,7 @@
       "2": "Fill amount input",
       "3": "Fill phone number input",
       "4": "Send with \"Send via BLIK\" button",
-      "5": "Expected result: If the bank account does not have enough funds (status 403 and body { code: \"lack_of_funds\" }) the user should see a message: \"We couldn't send USD*KWOTA* because of lack of funds\""
+      "5": "Expected result: If the bank account does not have enough funds (status 403 and body { code: \"lack_of_funds\" }) the user should see a message: \"We couldn't send USD*AMOUNT* because of lack of funds\""
     },
     "success": "Success",
     "successMessage": "Amount USD{{amount}} was transfered to {{phone}}",
@@ -211,7 +211,7 @@
       "2": "Fill amount input",
       "3": "Fill phone number input",
       "4": "Send with \"Send via BLIK\" button",
-      "5": "Expected result: If the phone number does not exist (status 404 and body { code: \"number_not_found\" } in \"/api/blik\") the user should see a message: \"We couldn't find the recipient with given phone number: *NUMER_TELEFONU*\"."
+      "5": "Expected result: If the phone number does not exist (status 404 and body { code: \"number_not_found\" } in \"/api/blik\") the user should see a message: \"We couldn't find the recipient with given phone number: *PHONE_NUMBER*\"."
     },
     "tc3": {
       "heading": "Test case 3",
@@ -219,7 +219,7 @@
       "2": "Fill amount input",
       "3": "Fill phone number input",
       "4": "Send with \"Send via BLIK\" button",
-      "5": "Expected result: If the bank account does not have enough funds (status 403 and body { code: \"lack_of_funds\" }) the user should see a message: \"We couldn't send USD*KWOTA* because of lack of funds\""
+      "5": "Expected result: If the bank account does not have enough funds (status 403 and body { code: \"lack_of_funds\" }) the user should see a message: \"We couldn't send USD*AMOUNT* because of lack of funds\""
     },
     "success": "Success",
     "successMessage": "Amount USD{{amount}} from your account was transfered to {{phone}}",
