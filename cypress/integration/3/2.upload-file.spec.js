@@ -3,7 +3,7 @@ import Papa from "papaparse";
 
 describe("Files", () => {
   beforeEach(() => {
-    cy.visit("/3/files");
+    cy.visit("/pl/3/files");
     cy.login();
   });
 

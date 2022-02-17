@@ -78,7 +78,7 @@ const FileDropZone = ({ onChange, instruction, value, id, disabled }) => {
           fontWeight="semibold"
           disabled={disabled}
         >
-          Szukaj
+          Search
         </Link>
       </Text>
     </Flex>

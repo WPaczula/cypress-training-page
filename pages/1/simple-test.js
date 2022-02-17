@@ -15,61 +15,82 @@ import { Field, Form, Formik } from "formik";
 import React from "react";
 import Container from "../../components/Container";
 import MainPageLink from "../../components/MainPageLink";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
+
+export async function getServerSideProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale)),
+    },
+  };
+}
+
+const getDescription = (t, name, gender) => {
+  let description = "";
+  if (name === "") {
+    if (gender === "man") {
+      description += t("simpleTest.greetUnknownMan");
+    } else {
+      description += t("simpleTest.greetUnknownWoman");
+    }
+  } else {
+    description += t("simpleTest.greetKnown", { name });
+  }
+
+  description +=
+    gender === "man"
+      ? t("simpleTest.happyForManForm")
+      : t("simpleTest.happyForWomanForm");
+
+  return description;
+};
 
 const SimpleTest = () => {
   const toast = useToast();
+  const { t } = useTranslation();
 
   return (
     <>
       <MainPageLink />
       <Container>
-        <Heading color="teal">Podstawowy test 👶</Heading>
+        <Heading color="teal">{t("simpleTest.heading")}</Heading>
         <Text mt={4} textAlign="justify">
-          Nic nie utrwala wiedzy lepiej niż wykorzystanie jej w praktyce.
-          Dlatego na początku twoim zadaniem będzie realizacja kolejnego
-          prostego testu - zapisu formularza i sprawdzenie wyświetlenia
-          informacji.
+          {t("simpleTest.p1")}
         </Text>
         <Text mt={4} textAlign="justify">
-          W tym ćwiczeniu wykorzystasz podstawowe metody cypressa takie jak{" "}
+          {t("simpleTest.p2")}
           <Code>get</Code>, <Code>select</Code>, <Code>type</Code>,{" "}
-          <Code>click</Code> oraz asercje takie jak{" "}
+          <Code>click</Code>
+          {t("simpleTest.p3")}
           <Code>should('be.visible')</Code>
         </Text>
         <Text mt={8} textAlign="justify">
-          Poniżej znajduje się formularz, w którym należy wybrać płeć oraz imię.
-          Po przyciśnięciu przycisku submit zostanie wyświetlony toast z
-          powitaniem.
+          {t("simpleTest.p4")}
         </Text>
       </Container>
       <Container mt={4}>
         <Heading size="md" color="teal">
-          Test case 1
+          {t("simpleTest.tc1.heading")}
         </Heading>
         <OrderedList mt={4}>
-          <ListItem>Wejdź na stronę /1/simple-test</ListItem>
-          <ListItem>Wypełnij płeć - mężczyzna</ListItem>
-          <ListItem>Wpisz imię - Jan</ListItem>
-          <ListItem>Wyślij formularz przyciskiem "Wyślij"</ListItem>
-          <ListItem>
-            Spodziewany rezultat: Zostaje wyświetlony komunikat z powitaniem: "Witaj
-            Jan! Cieszę się, że wysłałeś ten formularz!"
-          </ListItem>
+          <ListItem>{t("simpleTest.tc1.1")}</ListItem>
+          <ListItem>{t("simpleTest.tc1.2")}</ListItem>
+          <ListItem>{t("simpleTest.tc1.3")}</ListItem>
+          <ListItem>{t("simpleTest.tc1.4")}</ListItem>
+          <ListItem>{t("simpleTest.tc1.5")}</ListItem>
         </OrderedList>
       </Container>
       <Container mt={4}>
         <Heading size="md" color="teal">
-          Test case 2
+          {t("simpleTest.tc2.heading")}
         </Heading>
         <OrderedList mt={4}>
-          <ListItem>Wejdź na stronę /1/simple-test</ListItem>
-          <ListItem>Wypełnij płeć - kobieta</ListItem>
-          <ListItem>Pozostaw imię puste</ListItem>
-          <ListItem>Wyślij formularz przyciskiem "Wyślij"</ListItem>
-          <ListItem>
-            Spodziewany rezultat: Zostaje wyświetlony komunikat z powitaniem: "Cześć
-            tajemnicza nieznajoma! Cieszę się że wysłałaś ten formularz!"
-          </ListItem>
+          <ListItem>{t("simpleTest.tc2.1")}</ListItem>
+          <ListItem>{t("simpleTest.tc2.2")}</ListItem>
+          <ListItem>{t("simpleTest.tc2.3")}</ListItem>
+          <ListItem>{t("simpleTest.tc2.4")}</ListItem>
+          <ListItem>{t("simpleTest.tc2.5")}</ListItem>
         </OrderedList>
       </Container>
       <Container mb={64}>
@@ -77,16 +98,8 @@ const SimpleTest = () => {
           initialValues={{ name: "", gender: "" }}
           onSubmit={({ name, gender }) => {
             toast({
-              title: "Hej! 🙋‍♂️",
-              description:
-                (name === ""
-                  ? `Cześć tajemnicz${gender === "man" ? "y" : "a"} nieznajom${
-                      gender === "man" ? "y" : "a"
-                    }!`
-                  : `Witaj ${name}!`) +
-                `${` Cieszę się, że wysłał${
-                  gender === "man" ? "eś" : "aś"
-                } ten formularz!`}`,
+              title: t("simpleTest.hi"),
+              description: getDescription(t, name, gender),
               status: "success",
               duration: 5000,
               isClosable: true,
@@ -99,10 +112,10 @@ const SimpleTest = () => {
                 <Field name="gender">
                   {({ field }) => (
                     <FormControl id="gender" mt={4}>
-                      <FormLabel>Płeć</FormLabel>
+                      <FormLabel>{t("simpleTest.gender")}</FormLabel>
                       <Select {...field} placeholder="-">
-                        <option value="man">Mężczyzna</option>
-                        <option value="woman">Kobieta</option>
+                        <option value="man">{t("simpleTest.man")}</option>
+                        <option value="woman">{t("simpleTest.woman")}</option>
                       </Select>
                     </FormControl>
                   )}
@@ -110,7 +123,7 @@ const SimpleTest = () => {
                 <Field name="name">
                   {({ field }) => (
                     <FormControl id="name">
-                      <FormLabel>Imię</FormLabel>
+                      <FormLabel>{t("simpleTest.name")}</FormLabel>
                       <Input {...field} />
                     </FormControl>
                   )}
@@ -122,7 +135,7 @@ const SimpleTest = () => {
                   colorScheme="teal"
                   type="submit"
                 >
-                  Wyślij
+                  {t("simpleTest.send")}
                 </Button>
               </Form>
             );

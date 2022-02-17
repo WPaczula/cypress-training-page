@@ -28,13 +28,33 @@ const AuthGatekeeper = React.memo(({ children }) => {
   const [referer, setReferer] = useState();
 
   useEffect(() => {
+    if (localStorage.getItem("ref")) {
+      setReferer(localStorage.getItem("ref"));
+    }
+  }, [referer]);
+
+  const initReferer = (ref) => {
+    if (!referer) {
+      localStorage.setItem("ref", ref);
+      setReferer(ref);
+    }
+  };
+
+  useEffect(() => {
     if (user === false) {
       if (!isPublic(router.pathname)) {
-        setReferer(router.pathname);
+        initReferer(router.pathname);
         router.push("/login");
       }
     }
   }, [user]);
+
+  useEffect(() => {
+    console.log("referer changed", referer);
+    return () => {
+      console.log("unmount");
+    };
+  }, [referer]);
 
   const previousUserState = usePrevious(user);
   useEffect(() => {

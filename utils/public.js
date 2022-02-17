@@ -1,2 +1,2 @@
 export const isPublic = (path) =>
-  path === "/login" || path === "/register";
+  path && (path.includes("/login") || path.includes("/register"));

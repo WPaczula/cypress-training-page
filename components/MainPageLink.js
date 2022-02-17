@@ -7,7 +7,14 @@ const MainPageLink = () => {
     <>
       <Box height="4" />
       <Link href="/" position="fixed" top={2} left={2}>
-        <Button size="small" p="1" width={7}>
+        <Button
+          size="small"
+          colorScheme="teal"
+          p="1"
+          width={7}
+          color="white"
+          fontWeight="bold"
+        >
           {"<"}
         </Button>
       </Link>

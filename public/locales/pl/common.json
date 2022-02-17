@@ -1,0 +1,260 @@
+{
+  "moveCommand": {
+    "heading": "0. Dodaj login command 📦",
+    "p1": "Tworzenie reużywalnych komend w cypressie to dobry sposób na uniknięcie duplikacji kodu! Zamiast tego można także wydzielić funkcję javascriptową i tam włożyć swoją logikę, co wolisz 😄",
+    "p2": "Jak ocenić czy tworzyć funkcję czy dodać command? Dla mnie sprawdzało się pytanie:",
+    "p3": "\"Czy ta funkcja będzie rozszerzać możliwości cypressa czy będzie zawierać moją logikę biznesową?\"",
+    "p4": "Pierwszy przypadek to obsługa customowych kontrolek w projekcie, drugą byłoby wypełnienie formularza w określony sposób lub zaciągnięcie danych.",
+    "p5": "Do dzieła! 🚀 Stwórz nową komendę cypressa, która pozwoli zalogować użytkownika. Będziemy jej potrzebować w każdym teście na stronach z autentykacją. Poniżej znajdziesz templatkę, której możesz użyć w folderze ",
+    "p6": "Po stworzeniu komendy użyj jej w swoim teście logowania!"
+  },
+  "editSave": {
+    "heading": "Wczytywanie i edycja danych",
+    "p1": "Edycja danych jest bardzo częstą sytuacją w aplikacjach, zarówno tych prostych jak i bardziej skomplikowanych. Aby sprawdzić, czy zmiany zostały wprowadzone często trzeba porównać je ze stanem informacji sprzed zapisu.",
+    "p2": "W tym ćwiczeniu zobaczysz jak wczytać obecne dane z formularza, zmienić wartości i sprawdzić czy twoje zmiany zostały wprowadzone. Dzięki temu przećwiczysz przechowywanie informacji pomiędzy kolejnymi krokami.",
+    "p3": "Do zapisu danych może przydać Ci się metoda \"as(NAME)\" aby stworzyć alias i \"get(@NAME)\", bądź po prostu tworzenie zmiennych - wybór należy do ciebie 🤙",
+    "tc1": {
+      "title": "Teast case 1",
+      "1": "Wejdź na stronę /1/edit-save",
+      "2": "Wczytaj liczbę emoji",
+      "3": "Wejdź w tryb edycji za pomocą przycisku \"Edytuj\"",
+      "4": "Zwiększ liczbę o 1 za pomocą strzałki w górę",
+      "5": "Zaznacz checkbox, który sprawdza, że nie jesteś robotem",
+      "6": "Zapisz zmiany za pomocą przycisku \"Zapisz\"",
+      "7": "Spodziewany rezultat: Zostaje wyświetlony o jeden więcej emoji."
+    },
+    "tc2": {
+      "title": "Teast case 2",
+      "1": "Wejdź na stronę /1/edit-save",
+      "2": "Wczytaj liczbę emoji",
+      "3": "Wejdź w tryb edycji za pomocą przycisku \"Edytuj\"",
+      "4": "Wyczyść input \"Liczba emoji\"",
+      "5": "Odrzuć zmiany za pomocą przycisku \"Anuluj\"",
+      "6": "Spodziewany rezultat: Liczba emoji pozostaje bez zmian, ale one same się zmieniają"
+    },
+    "emojiCount": "Liczba emoji",
+    "robot": "Czy na pewno nie jesteś robotem? 🤖",
+    "save": "Zapisz",
+    "cancel": "Anuluj",
+    "edit": "Edytuj",
+    "yourEmoji": "Twoje emoji"
+  },
+  "helpers": {
+    "heading": "Spis użytecznych komend",
+    "p1": "Jeżeli będziesz chciał sobie przypomnieć komendy lub sposób pisania asercji/budowę testu odwiedź folder \"__CHEATSHEET__/1\" w tej solucji. Jeżeli czegoś w nim nie znajdziesz powiedz mi a ja postaram ci się pomóc i dodać to od razu dla potomnych 😄"
+  },
+  "simpleTest": {
+    "heading": "Podstawowy test 👶",
+    "p1": "Nic nie utrwala wiedzy lepiej niż wykorzystanie jej w praktyce. Dlatego na początku twoim zadaniem będzie realizacja kolejnego prostego testu - zapisu formularza i sprawdzenie wyświetlenia informacji.",
+    "p2": "W tym ćwiczeniu wykorzystasz podstawowe metody cypressa takie jak",
+    "p3": " oraz asercje takie jak ",
+    "p4": "Poniżej znajduje się formularz, w którym należy wybrać płeć oraz imię. Po przyciśnięciu przycisku submit zostanie wyświetlony toast z powitaniem.",
+    "tc1": {
+      "heading": "Test case 1",
+      "1": "Wejdź na stronę /1/simple-test",
+      "2": "Wypełnij płeć - mężczyzna",
+      "3": "Wpisz imię - Jan",
+      "4": "Wyślij formularz przyciskiem \"Wyślij\"",
+      "5": "Spodziewany rezultat: Zostaje wyświetlony komunikat z powitaniem: \"Witaj Jan! Cieszę się, że wysłałeś ten formularz!\""
+    },
+    "tc2": {
+      "heading": "Test case 2",
+      "1": "Wejdź na stronę /1/simple-test",
+      "2": "Wypełnij płeć - kobieta",
+      "3": "Pozostaw imię puste",
+      "4": "Wyślij formularz przyciskiem \"Wyślij\"",
+      "5": "Spodziewany rezultat: Zostaje wyświetlony komunikat z powitaniem: \"Cześć tajemnicza nieznajoma! Cieszę się że wysłałaś ten formularz!\""
+    },
+    "hi": "Hej! 🙋‍♂️",
+    "greetUnknownMan": "Cześć tajemniczy nieznajomy!",
+    "greetUnknownWoman": "Cześć tajemnicza nieznajoma!",
+    "greetKnown": "Witaj {{name}}!",
+    "happyForManForm": " Cieszę się, że wysłałeś ten formularz!",
+    "happyForWomanForm": " Cieszę się, że wysłałaś ten formularz!",
+    "man": "Mężczyzna",
+    "woman": "Kobieta",
+    "gender": "Płeć",
+    "name": "Imię",
+    "send": "Wyślij"
+  },
+  "simulatingErrors": {
+    "heading": "Symulowanie błędów 💥",
+    "p1": "Wyobraź sobie, że twoja aplikacja korzysta z third party API na które nie masz wpływu lub chciałbyś sprawdzić jak się zachowa po uzyskaniu konkretnego statusu błędu lub nie chcesz korzystać z niego w testach, bo na przykład każdy request jest płatny 🤔",
+    "p2": "Cypress pozwala na przechwytywanie requestów przeglądarki i zwra swoich własnych odpowiedzi przy użyciu metod \"intercept\" oraz \"wait\". Response można zapisać jako jsony naz fixture. Przy okazji tego ćwiczenia nauczysz się jak zasymulować API dla strony i jak wykorzystywać pliki fixture.",
+    "p3": "Poniżej znajduje się strona, która symuluje realizację przelewu blikiem na dany numer telefonu. Z punktu widzenia biznesu załóżmy, że bardzo istotnym casem jest sprawdzenie, że jeżeli przelew się nie uda, użytkownik musi zobaczyć od razu informację o niepowodzeniu. Dla test case'ów z niepowodzeniem użyj mocków dodanych poprzez \"intercept\"",
+    "tc1": {
+      "heading": "Test case 1",
+      "1": "Wejdź na stronę /1/simulating-requests",
+      "2": "Wypełnij kwotę",
+      "3": "Wypełnij numer telefonu",
+      "4": "Wyślij formularz przyciskiem \"Prześlij blikiem\"",
+      "5": "Spodziewany rezultat: Jeżeli numer telefonu istnieje i przelew został zrobiony (status 200 po requeście w \"/api/blik\") użytkownik powinien zobaczyć informację o treści \"Kwota *KWOTA*PLN została poprawnie przelana na numer *NUMER*\""
+    },
+    "tc2": {
+      "heading": "Test case 2",
+      "1": "Wejdź na stronę /1/simulating-requests",
+      "2": "Wypełnij kwotę",
+      "3": "Wypełnij numer telefonu",
+      "4": "Wyślij formularz przyciskiem \"Prześlij blikiem\"",
+      "5": "Spodziewany rezultat: Jeżeli numer telefonu nie istnieje (status 404 i określone body { code: \"number_not_found\" } po requeście w \"/api/blik\") użytkownik powinien zobaczyć informację o treści \"Nie udało się znaleźć odbiorcy o numerze telefonu *NUMER_TELEFONU*\"."
+    },
+    "tc3": {
+      "heading": "Test case 3",
+      "1": "Wejdź na stronę /1/simulating-requests",
+      "2": "Wypełnij kwotę",
+      "3": "Wypełnij numer telefonu",
+      "4": "Wyślij formularz przyciskiem \"Prześlij blikiem\"",
+      "5": "Spodziewany rezultat: Jeżeli konto nie ma wystarczających środków (status 403 i określone body { code: \"lack_of_funds\" }) użytkownik powinien zobaczyć informację o treści \"Nie udało się przesłać *KWOTA* PLN z uwagi na brak środków na koncie\""
+    },
+    "success": "Sukces",
+    "successMessage": "Kwota {{amount}}PLN została poprawnie przelana na numer {{phone}}",
+    "error": "Błąd",
+    "errorMessage403": "Nie udało się przesłać {{amount}}PLN z uwagi na brak środków na koncie",
+    "errorMessage404": "Nie udało się znaleźć odbiorcy o numerze telefonu {{phone}}",
+    "amount": "Kwota",
+    "currency": "PLN",
+    "recipientPhoneNumber": "Numer telefonu odbiorcy",
+    "phoneCode": "+48",
+    "phoneFormat": "Format 123-456-789",
+    "sendBLIK": "Prześlij blikiem"
+  },
+  "index": {
+    "hi": "Hej! 👋",
+    "p1": "W tym miejscu znajdziesz linki do kolejnych ćwiczeń. Przejdź na konkretną stronę i przetestuj ją w cypressie korzystając z zawartych tam informacji.",
+    "p2": "Powodzenia 🚀",
+    "p3": "Przewodnik po ćwiczeniach",
+    "0": "Dodaj login command",
+    "1": "Pisanie testów",
+    "1-1": "Wykorzystanie podstawowych funkcji",
+    "1-2": "Edycja danych i ich zapis",
+    "1-3": "Kontrolowanie API",
+    "2": "Zmiany w testach",
+    "2-1": "Ćwiczenia w debugowaniu",
+    "2-2": "Ćwiczenia w naprawianiu zmian domenowych",
+    "3": "Zewnętrzne biblioteki i pliki"
+  },
+  "editSave2": {
+    "heading": "Dziwne, wcześniej działało 🤔",
+    "p1": " Pewną rzeczą jest, że wraz z rozwojem aplikacji niektóre testy przestaną działać. Sprawdź plik testowy /2/edit-save. Spróbuj znaleźć powód, przez który testy przestały działać.",
+    "p2": "HINT: możesz kliknąć w konkretny step w cypress runnerze a jego detale zostaną pokazane w konsoli",
+    "tc1": {
+      "title": "Teast case 1",
+      "1": "Wejdź na stronę /1/edit-save",
+      "2": "Wczytaj liczbę emoji",
+      "3": "Wejdź w tryb edycji za pomocą przycisku \"Edytuj\"",
+      "4": "Zwiększ liczbę o 1 za pomocą strzałki w górę",
+      "5": "Zaznacz checkbox, który sprawdza, że nie jesteś robotem",
+      "6": "Zapisz zmiany za pomocą przycisku \"Zapisz\"",
+      "7": "Spodziewany rezultat: Zostaje wyświetlony o jeden więcej emoji."
+    },
+    "tc2": {
+      "title": "Teast case 2",
+      "1": "Wejdź na stronę /1/edit-save",
+      "2": "Wczytaj liczbę emoji",
+      "3": "Wejdź w tryb edycji za pomocą przycisku \"Edytuj\"",
+      "4": "Wyczyść input \"Liczba emoji\"",
+      "5": "Odrzuć zmiany za pomocą przycisku \"Anuluj\"",
+      "6": "Spodziewany rezultat: Liczba emoji pozostaje bez zmian, ale one same się zmieniają"
+    },
+    "emojiCount": "Liczba emoji",
+    "robot": "Czy na pewno nie jesteś robotem? 🤖",
+    "save": "Zapisz",
+    "cancel": "Anuluj",
+    "edit": "Edytuj",
+    "yourEmoji": "Twoje emoji"
+  },
+  "simpleTest2": {
+    "heading": "Jak debugować 🐛",
+    "p1": "Strona moze wydawać ci się znajoma, jednak developer zmienił coś w kodziku i test niestety przestał działać. Sprwadźmy co to moze być korzystając tylko z myszy i konsoli przeglądarki (F12).",
+    "tc1": {
+      "heading": "Test case 1",
+      "1": "Wejdź na stronę /2/simple-test",
+      "2": "Wypełnij płeć - mężczyzna",
+      "3": "Wpisz imię - Jan",
+      "4": "Wyślij formularz przyciskiem \"Wyślij\"",
+      "5": "Spodziewany rezultat: Zostaje wyświetlony komunikat z powitaniem: \"Witaj Jan! Cieszę się, że tu jesteś!\""
+    },
+    "tc2": {
+      "heading": "Test case 2",
+      "1": "Wejdź na stronę /2/simple-test",
+      "2": "Wypełnij płeć - kobieta",
+      "3": "Pozostaw imię puste",
+      "4": "Wyślij formularz przyciskiem \"Wyślij\"",
+      "5": "Spodziewany rezultat: Zostaje wyświetlony komunikat z powitaniem: \"Cześć tajemnicza nieznajoma! Cieszę się, że tu jesteś!\""
+    },
+    "hi": "Hej! 🙋‍♂️",
+    "greetUnknownMan": "Cześć tajemniczy nieznajomy!",
+    "greetUnknownWoman": "Cześć tajemnicza nieznajoma!",
+    "greetKnown": "Witaj {{name}}!",
+    "happyForManForm": " Cieszę się, że wysłałeś ten formularz!",
+    "happyForWomanForm": " Cieszę się, że wysłałaś ten formularz!",
+    "man": "M",
+    "woman": "K",
+    "gender": "Płeć",
+    "name": "Imię",
+    "send": "Wyślij"
+  },
+  "simulatingErrors2": {
+    "heading": "Zmiany domenowe",
+    "p1": "W tym ćwiczeniu postaraj się poznane metody debuggowania, żeby naprawić testy. W tym przypadku zmieniła się domena w stosunku do wcześniejszego ćwiczenia, a testy są już \"zastane\", napisane przez kolegę z zespołu. Developer zaimplementował również maksymalną kwotę 500PLN na jednego blika. Zmieniły się także nieco komunikaty dla użytkowników i wykorzystany endpoint.",
+    "tc1": {
+      "heading": "Test case 1",
+      "1": "Wejdź na stronę /2/simulating-requests",
+      "2": "Wypełnij kwotę",
+      "3": "Wypełnij numer telefonu",
+      "4": "Wyślij formularz przyciskiem \"Prześlij blikiem\"",
+      "5": "Spodziewany rezultat: Jeżeli numer telefonu istnieje i przelew został zrobiony (status 200) użytkownik powinien zobaczyć informację o treści \"Kwota *KWOTA*PLN z twojego konta została poprawnie przelana na numer *NUMER*\""
+    },
+    "tc2": {
+      "heading": "Test case 2",
+      "1": "Wejdź na stronę /2/simulating-requests",
+      "2": "Wypełnij kwotę",
+      "3": "Wypełnij numer telefonu",
+      "4": "Wyślij formularz przyciskiem \"Prześlij blikiem\"",
+      "5": "Spodziewany rezultat: Jeżeli numer telefonu nie istnieje (status 404 i określone body { code: \"number_not_found\" }) użytkownik powinien zobaczyć informację o treści \"Nie udało się znaleźć odbiorcy o numerze telefonu *NUMER_TELEFONU*\"."
+    },
+    "tc3": {
+      "heading": "Test case 3",
+      "1": "Wejdź na stronę /2/simulating-requests",
+      "2": "Wypełnij kwotę",
+      "3": "Wypełnij numer telefonu",
+      "4": "Wyślij formularz przyciskiem \"Prześlij blikiem\"",
+      "5": "Spodziewany rezultat: Jeżeli konto nie ma wystarczających środków (status 403 i określone body { code: \"lack_of_funds\" }) użytkownik powinien zobaczyć informację o treści \"Nie udało się przesłać *KWOTA* PLN z uwagi na brak środków na koncie\""
+    },
+    "success": "Sukces",
+    "successMessage": "Kwota {{amount}}PLN z twojego konta została poprawnie przelana na numer {{phone}}",
+    "error": "Błąd",
+    "errorMessage403": "Nie udało się przesłać {{amount}}PLN z uwagi na brak środków na koncie",
+    "errorMessage404": "Nie udało się znaleźć odbiorcy o numerze telefonu {{phone}}",
+    "amount": "Kwota",
+    "currency": "PLN",
+    "recipientPhoneNumber": "Numer telefonu odbiorcy",
+    "phoneCode": "+48",
+    "phoneFormat": "Format 123-456-789",
+    "sendBLIK": "Prześlij blikiem"
+  },
+  "files": {
+    "heading": "Działania na plikach i zewnętrzne biblioteki 🗃📂",
+    "p1": "Bardzo częstym use casem w aplikacjach są wszelkie działania na plikach takie jak pobieranie danych ze strony w postaci plików CSV, pobieranie zdjęć czy wgrywanie plików na serwer.",
+    "p2": "Natywnie cypress nie posiada takich funkcjonalności, ale można znaleźć mnóstwo przydatnych bibliotek, dzięki którym testowanie takich funkcjonalności jest dużo prostsze. Dzisiaj skupimy się na ",
+    "p3": " oraz wykorzystamy parser plików CSV aby sprawdzić czy pobrany plik ma odpowiednie dane ",
+    "p4": "Poniżej znajduje się przycisk, który pozwala na ściągnięcie obrazka oraz miejsce, w które można \"wrzucić\" plik, który jest później wyświetlony. Kieruj się poleceniami aby wykonać ćwiczenia z tego bloku.",
+    "tc1": {
+      "heading": "Ściąganie pliku",
+      "1": "Wejdź na stronę /3/files",
+      "2": "Ściągnij obrazek poprzez kliknięcie w przycisk \"Pobierz\"",
+      "3": "Spodziewany rezultat: obrazek został ściągnięty i nazywa się \"cypress.jpg\""
+    },
+    "download": "Pobierz",
+    "tc2": {
+      "heading": "Upload pliku",
+      "1": "Wejdź na stronę /3/files",
+      "2": "Wrzuć plik \"users.csv\" (folder fixtures) poprzez drag-n-drop",
+      "3": "Kliknij przycisk \"Podgląd\"",
+      "4": "Spodziewany rezultat: użytkownicy z pliku CSV pokazują się pod przyciskiem w tabelce"
+    },
+    "preview": "Podgląd",
+    "users": "Użytkownicy",
+    "chooseCSV": "Wybierz plik csv"
+  }
+}

@@ -24,74 +24,62 @@ import React from "react";
 import Container from "../../components/Container";
 import axios from "axios";
 import MainPageLink from "../../components/MainPageLink";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
+
+export async function getServerSideProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale)),
+    },
+  };
+}
 
 const SimulatingErrors = () => {
   const toast = useToast();
+  const { t } = useTranslation();
 
   return (
     <>
       <MainPageLink />
       <Container>
-        <Heading color="teal">Zmiany domenowe</Heading>
-        <Text mt={8}>
-          W tym ćwiczeniu postaraj się poznane metody debuggowania, żeby
-          naprawić testy. W tym przypadku zmieniła się domena w stosunku do
-          wcześniejszego ćwiczenia, a testy są już "zastane", napisane przez
-          kolegę z zespołu. Developer zaimplementował również maksymalną kwotę
-          500PLN na jednego blika. Zmieniły się także nieco komunikaty dla
-          użytkowników i wykorzystany endpoint.
-        </Text>
+        <Heading color="teal">{t("simulatingErrors2.heading")}</Heading>
+        <Text mt={8}>{t("simulatingErrors2.p1")}</Text>
       </Container>
       <Container mt={4}>
         <Heading size="md" color="teal">
-          Test case 1
+          {t("simulatingErrors2.tc1.heading")}
         </Heading>
         <OrderedList mt={4}>
-          <ListItem>Wejdź na stronę /2/simulating-requests</ListItem>
-          <ListItem>Wypełnij kwotę</ListItem>
-          <ListItem>Wypełnij numer telefonu</ListItem>
-          <ListItem>Wyślij formularz przyciskiem "Prześlij blikiem"</ListItem>
-          <ListItem>
-            Spodziewany rezultat: Jeżeli numer telefonu istnieje i przelew
-            został zrobiony (status 200) użytkownik powinien zobaczyć informację
-            o treści "Kwota *KWOTA*PLN z twojego konta została poprawnie
-            przelana na numer *NUMER*"
-          </ListItem>
+          <ListItem> {t("simulatingErrors2.tc1.1")}</ListItem>
+          <ListItem> {t("simulatingErrors2.tc1.2")}</ListItem>
+          <ListItem> {t("simulatingErrors2.tc1.3")}</ListItem>
+          <ListItem> {t("simulatingErrors2.tc1.4")}</ListItem>
+          <ListItem> {t("simulatingErrors2.tc1.5")}</ListItem>
         </OrderedList>
       </Container>
       <Container mt={4}>
         <Heading size="md" color="teal">
-          Test case 2
+          {t("simulatingErrors2.tc2.heading")}
         </Heading>
         <OrderedList mt={4}>
-          <ListItem>Wejdź na stronę /2/simulating-requests</ListItem>
-          <ListItem>Wypełnij kwotę</ListItem>
-          <ListItem>Wypełnij numer telefonu</ListItem>
-          <ListItem>Wyślij formularz przyciskiem "Prześlij blikiem"</ListItem>
-          <ListItem>
-            Spodziewany rezultat: Jeżeli numer telefonu nie istnieje (status 404
-            i określone body <Code>{`{ code: "number_not_found" }`}</Code>)
-            użytkownik powinien zobaczyć informację o treści "Nie udało się
-            znaleźć odbiorcy o numerze telefonu *NUMER_TELEFONU*"
-          </ListItem>
+          <ListItem> {t("simulatingErrors2.tc2.1")}</ListItem>
+          <ListItem> {t("simulatingErrors2.tc2.2")}</ListItem>
+          <ListItem> {t("simulatingErrors2.tc2.3")}</ListItem>
+          <ListItem> {t("simulatingErrors2.tc2.4")}</ListItem>
+          <ListItem> {t("simulatingErrors2.tc2.5")}</ListItem>
         </OrderedList>
       </Container>
       <Container mt={4}>
         <Heading size="md" color="teal">
-          Test case 3
+          {t("simulatingErrors2.tc3.heading")}
         </Heading>
         <OrderedList mt={4}>
-          <ListItem>Wejdź na stronę /1/simulating-requests</ListItem>
-          <ListItem>Wypełnij kwotę</ListItem>
-          <ListItem>Wypełnij numer telefonu</ListItem>
-          <ListItem>Wyślij formularz przyciskiem "Prześlij blikiem"</ListItem>
-          <ListItem>
-            Spodziewany rezultat: Jeżeli konto nie ma wystarczających środków
-            (status 403 i określone body{" "}
-            <Code>{`{ code: "lack_of_funds" }`}</Code>) użytkownik powinien
-            zobaczyć informację o treści "Nie udało się przesłać *KWOTA* PLN z
-            uwagi na brak środków na koncie"
-          </ListItem>
+          <ListItem> {t("simulatingErrors2.tc3.1")}</ListItem>
+          <ListItem> {t("simulatingErrors2.tc3.2")}</ListItem>
+          <ListItem> {t("simulatingErrors2.tc3.3")}</ListItem>
+          <ListItem> {t("simulatingErrors2.tc3.4")}</ListItem>
+          <ListItem> {t("simulatingErrors2.tc3.5")}</ListItem>
         </OrderedList>
       </Container>
       <Container mb={64}>
@@ -111,8 +99,11 @@ const SimulatingErrors = () => {
               )
               .then(() => {
                 toast({
-                  title: "Sukces",
-                  description: `Kwota ${amount}PLN z twojego konta została poprawnie przelana na numer ${phone}`,
+                  title: t("simulatingErrors2.success"),
+                  description: t("simulatingErrors2.successMessage", {
+                    amount,
+                    phone,
+                  }),
                   duration: 5000,
                   isClosable: true,
                   status: "success",
@@ -124,8 +115,10 @@ const SimulatingErrors = () => {
                   e.response.status === 403
                 ) {
                   toast({
-                    title: "Błąd",
-                    description: `Nie udało się przesłać ${amount}PLN z uwagi na brak środków na koncie`,
+                    title: t("simulatingErrors2.error"),
+                    description: t("simulatingErrors2.errorMessage403", {
+                      amount,
+                    }),
                     duration: 5000,
                     isClosable: true,
                     status: "error",
@@ -135,8 +128,10 @@ const SimulatingErrors = () => {
                   e.response.status === 404
                 ) {
                   toast({
-                    title: "Błąd",
-                    description: `Nie udało się znaleźć odbiorcy o numerze telefonu ${phone}`,
+                    title: t("simulatingErrors2.error"),
+                    description: t("simulatingErrors2.errorMessage404", {
+                      phone,
+                    }),
                     duration: 5000,
                     isClosable: true,
                     status: "error",
@@ -151,9 +146,11 @@ const SimulatingErrors = () => {
               <Field name="amount">
                 {({ field, form }) => (
                   <FormControl id="amount">
-                    <FormLabel>Kwota</FormLabel>
+                    <FormLabel>{t("simulatingErrors2.amount")}</FormLabel>
                     <InputGroup>
-                      <InputLeftAddon>PLN</InputLeftAddon>
+                      <InputLeftAddon>
+                        {t("simulatingErrors2.currency")}
+                      </InputLeftAddon>
                       <NumberInput
                         {...field}
                         onChange={(val) => form.setFieldValue(field.name, val)}
@@ -174,16 +171,22 @@ const SimulatingErrors = () => {
               <Field name="phone">
                 {({ field }) => (
                   <FormControl id="phone" mt="4">
-                    <FormLabel>Numer telefonu odbiorcy</FormLabel>
+                    <FormLabel>
+                      {t("simulatingErrors2.recipientPhoneNumber")}
+                    </FormLabel>
                     <InputGroup>
-                      <InputLeftAddon>+48</InputLeftAddon>
+                      <InputLeftAddon>
+                        {t("simulatingErrors.phoneCode")}
+                      </InputLeftAddon>
                       <Input
                         type="tel"
                         pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}"
                         {...field}
                       />
                     </InputGroup>
-                    <FormHelperText>Format 123-456-789</FormHelperText>
+                    <FormHelperText>
+                      {t("simulatingErrors.phoneFormat")}
+                    </FormHelperText>
                   </FormControl>
                 )}
               </Field>
@@ -194,7 +197,11 @@ const SimulatingErrors = () => {
                 disabled={!values.amount || !values.phone || isSubmitting}
                 mt={4}
               >
-                {isSubmitting ? <CircularProgress /> : "Prześlij blikiem"}
+                {isSubmitting ? (
+                  <CircularProgress />
+                ) : (
+                  t("simulatingErrors.sendBLIK")
+                )}
               </Button>
             </Form>
           )}

@@ -9,6 +9,7 @@ const Container = (props) => {
       borderRadius="base"
       p="8"
       maxWidth={"75ch"}
+      bgColor="white"
       {...props}
     >
       {props.children}

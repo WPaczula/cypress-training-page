@@ -3,6 +3,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import React from "react";
 import AuthProvider from "../firebase/provider";
 import AuthGatekeeper from "../components/AuthGatekeeper";
+import { appWithTranslation } from "next-i18next";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -16,4 +17,4 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
-export default MyApp;
+export default appWithTranslation(MyApp);

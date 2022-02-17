@@ -2,7 +2,7 @@ import editSavePage from "../../page-object/edit-save";
 
 describe("Edit save", () => {
   beforeEach(() => {
-    cy.visit("/2/edit-save");
+    cy.visit("/pl/2/edit-save");
     cy.login();
   });
 
@@ -18,7 +18,7 @@ describe("Edit save", () => {
       editSavePage
         .newEmojis()
         .its("length")
-        .should("have.length", initialLength + 1);
+        .should("equal", initialLength + 1);
     });
   });
 

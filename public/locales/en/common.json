@@ -1,0 +1,260 @@
+{
+  "moveCommand": {
+    "heading": "0. Add login command 📦",
+    "p1": "Creation of reusable commands in cypress is a good idea to avoid code duplication! The other option is to create a JS function and use the shared logic this way",
+    "p2": "When should we create functions vs commands? For me asking myself a single question worked:",
+    "p3": "\"Will this method extend cypress functionality or have my business logic inside?\"",
+    "p4": "First scenario would be a custom component handling, the second one would be filling a form in a given way or getting data from the backend service.",
+    "p5": "Let's jump to the code! 🚀 Create your command which logs the user in. We will need it on every page which has an authentication. You can find a template below to help you:",
+    "p6": "After your command is created use it in your log in test!"
+  },
+  "editSave": {
+    "heading": "Read and write",
+    "p1": "Data edition is a very common thing, both simple and more complex ones. To check, if the changes were made we have to compare the state from before the change.",
+    "p2": "In this exercise you will read the data from the form, change the values and check if the data were correctly saved. You'll train saving information between steps this way.",
+    "p3": "To save your data methods like \"as(NAME)\" to create an alias and \"get(@NAME)\" might be useful",
+    "tc1": {
+      "title": "Teast case 1",
+      "1": "Visit /1/edit-save",
+      "2": "Get emoji count",
+      "3": "Go into edit mode with \"Edit\" button",
+      "4": "Increase the number of emojis with up arrow",
+      "5": "Check \"not a robot\" checkbox",
+      "6": "Save with \"Save\" button",
+      "7": "Expected result: One more emoji is visible."
+    },
+    "tc2": {
+      "title": "Teast case 2",
+      "1": "Visit /1/edit-save",
+      "2": "Get emoji count",
+      "3": "Go into edit mode with \"Edit\" button",
+      "4": "Clear \"Emoji count\" input",
+      "5": "Cancel your changes",
+      "6": "Expected result: The count of emojis is not changed, but you get a different set of them"
+    },
+    "emojiCount": "Emoji count",
+    "robot": "Check if you are not a robot 🤖",
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "yourEmoji": "Your emojis"
+  },
+  "helpers": {
+    "heading": "Useful commands list",
+    "p1": "If you want to remind yourself some commands or assertions/test structure go to the \"__CHEATSHEET__/1\" directory in your project. If you can't find something let me know and I'll try to help and add it for other people 😄"
+  },
+  "simpleTest": {
+    "heading": "Simple test 👶",
+    "p1": "Let's do some practice now. Your first task is to create a simple test - form saving and simple assertions.",
+    "p2": "In this exercise you will use basic methods like",
+    "p3": " and assertions like ",
+    "p4": "There is a form below, where you can pick a gender and a name. After clicking submit button a toast will show up.",
+    "tc1": {
+      "heading": "Test case 1",
+      "1": "Visit /1/simple-test",
+      "2": "Choose a gender - man",
+      "3": "Type name - Jan",
+      "4": "Send the form with \"Send\" button",
+      "5": "Expected result: a toast with a message is shown: \"Hi Jan! I'm happy you sent the form!\""
+    },
+    "tc2": {
+      "heading": "Test case 2",
+      "1": "Visit /1/simple-test",
+      "2": "Choose a gender - woman",
+      "3": "Leave name field empty",
+      "4": "Send the form with \"Send\" button",
+      "5": "Expected result: a toast with a message is shown: \"Hi misterious stranger! I'm happy you sent the form!\""
+    },
+    "hi": "Hi! 🙋‍♂️",
+    "greetUnknownMan": "Hi misterious stranger!",
+    "greetUnknownWoman": "Hi misterious stranger!",
+    "greetKnown": "Hi {{name}}!",
+    "happyForManForm": " I'm happy you sent the form!",
+    "happyForWomanForm": " I'm happy you sent the form!",
+    "man": "Man",
+    "woman": "Woman",
+    "name": "Name",
+    "gender": "Gender",
+    "send": "Send"
+  },
+  "simulatingErrors": {
+    "heading": "Simulating errors 💥",
+    "p1": "Imagine your app use some third party API which you cannot control or you want to check how the app acts after getting a given http status code or you don't want to use the real API in the test, because each request is paid 🤔",
+    "p2": "Cypress allows us to intercept requests made by the browser and return your own responses by \"intercept\" and \"wait\" methods. Responses can be passed as JSON objects or fixture files. In this exercise you will learn how intercept API calls and use fixture files to mock them.",
+    "p3": "A form below allows to make a transfer to a user given his phone number (BLIK). From the domain point of view let's assume that a case where the transfer failed is important and the user needs to see the error message right away. For test cases with errors use mocked data using \"intercept\" method",
+    "tc1": {
+      "heading": "Test case 1",
+      "1": "Visit /1/simulating-requests",
+      "2": "Fill amount input",
+      "3": "Fill phone number input",
+      "4": "Send with \"Send via BLIK\" button",
+      "5": "Expected result: If the phone number exists and the transfer was made (status 200 in \"/api/blik\") the user should see a message: \"Amount USD*AMOUNT* was transfered to *PHONE_NUMBER*\""
+    },
+    "tc2": {
+      "heading": "Test case 2",
+      "1": "Visit /1/simulating-requests",
+      "2": "Fill amount input",
+      "3": "Fill phone number input",
+      "4": "Send with \"Send via BLIK\" button",
+      "5": "Expected result: If the phone number does not exist (status 404 and body { code: \"number_not_found\" } in \"/api/blik\") the user should see a message: \"We couldn't find the recipient with given phone number: *NUMER_TELEFONU*\"."
+    },
+    "tc3": {
+      "heading": "Test case 3",
+      "1": "Visit /1/simulating-requests",
+      "2": "Fill amount input",
+      "3": "Fill phone number input",
+      "4": "Send with \"Send via BLIK\" button",
+      "5": "Expected result: If the bank account does not have enough funds (status 403 and body { code: \"lack_of_funds\" }) the user should see a message: \"We couldn't send USD*KWOTA* because of lack of funds\""
+    },
+    "success": "Success",
+    "successMessage": "Amount USD{{amount}} was transfered to {{phone}}",
+    "error": "Error",
+    "errorMessage403": "We couldn't send USD{{amount}} because of lack of funds",
+    "errorMessage404": "We couldn't find the recipient with given phone number: {{phone}}.",
+    "amount": "Amount",
+    "currency": "USD",
+    "recipientPhoneNumber": "Recipient phone number",
+    "phoneCode": "+1",
+    "phoneFormat": "Format 123-456-789",
+    "sendBLIK": "Send via BLIK"
+  },
+  "index": {
+    "hi": "Hi! 👋",
+    "p1": "On this page you can find links to exercises. Visit pages and test them in cypress using presented information.",
+    "p2": "Good luck 🚀",
+    "p3": "Exercises",
+    "0": "Add login command",
+    "1": "Writing tests",
+    "1-1": "Using basic functions",
+    "1-2": "Read and write",
+    "1-3": "API intercepts",
+    "2": "Changes in tests",
+    "2-1": "Debugging",
+    "2-2": "Fixing domain changes",
+    "3": "Third party libraries and files"
+  },
+  "editSave2": {
+    "heading": "Weird, it was working before 🤔",
+    "p1": "It's certain that when development some tests will break. Check /2/edit-save file. Try to find out why these tests stopped working.",
+    "p2": "HINT: you can click on a step in cypress runner and its details will be shown in the console",
+    "tc1": {
+      "title": "Teast case 1",
+      "1": "Visit /2/edit-save",
+      "2": "Get emoji count",
+      "3": "Go into edit mode with \"Edit\" button",
+      "4": "Increase the number of emojis with up arrow",
+      "5": "Check \"not a robot\" checkbox",
+      "6": "Save with \"Save\" button",
+      "7": "Expected result: One more emoji is visible."
+    },
+    "tc2": {
+      "title": "Teast case 2",
+      "1": "Visit /2/edit-save",
+      "2": "Get emoji count",
+      "3": "Go into edit mode with \"Edit\" button",
+      "4": "Clear \"Emoji count\" input",
+      "5": "Cancel your changes",
+      "6": "Expected result: The count of emojis is not changed, but you get a different set of them"
+    },
+    "emojiCount": "Emoji count",
+    "robot": "Check if you are not a robot 🤖",
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "yourEmoji": "Your emojis"
+  },
+  "simpleTest2": {
+    "heading": "How to debug 🐛",
+    "p1": "This page may seem familiar, but a developer changed the code and it broke our tests. Let's check it using just a mouse and F12 key.",
+    "tc1": {
+      "heading": "Test case 1",
+      "1": "Visit /2/simple-test",
+      "2": "Choose a gender - man",
+      "3": "Type name - Jan",
+      "4": "Send the form with \"Send\" button",
+      "5": "Expected result: a toast with a message is shown: \"Hi Jan! I'm happy you are here!\""
+    },
+    "tc2": {
+      "heading": "Test case 2",
+      "1": "Visit /2/simple-test",
+      "2": "Choose a gender - woman",
+      "3": "Leave name field empty",
+      "4": "Send the form with \"Send\" button",
+      "5": "Expected result: a toast with a message is shown: \"Hi misterious stranger! I'm happy you are here!\""
+    },
+    "hi": "Hi! 🙋‍♂️",
+    "greetUnknownMan": "Hi misterious stranger!",
+    "greetUnknownWoman": "Hi misterious stranger!",
+    "greetKnown": "Hi {{name}}!",
+    "happyForManForm": " I'm happy you are here!",
+    "happyForWomanForm": " I'm happy you are here!",
+    "man": "M",
+    "woman": "F",
+    "name": "Name",
+    "gender": "Gender",
+    "send": "Send"
+  },
+  "simulatingErrors2": {
+    "heading": "Domain changes",
+    "p1": "In this exercise use debug methods to fix the tests. In this case the domain was changed, and these tests were already written by someone else. A developer implemented USD500 as max amount per single transaction. The messages were changed and so did the endpoint.",
+    "tc1": {
+      "heading": "Test case 1",
+      "1": "Visit /2/simulating-requests",
+      "2": "Fill amount input",
+      "3": "Fill phone number input",
+      "4": "Send with \"Send via BLIK\" button",
+      "5": "Expected result: If the number exists and the transfer was made (status 200) the user should see a message: \"Amount USD*AMOUNT* from your account was transfered to *PHONE_NUMBER*\""
+    },
+    "tc2": {
+      "heading": "Test case 2",
+      "1": "Visit /2/simulating-requests",
+      "2": "Fill amount input",
+      "3": "Fill phone number input",
+      "4": "Send with \"Send via BLIK\" button",
+      "5": "Expected result: If the phone number does not exist (status 404 and body { code: \"number_not_found\" } in \"/api/blik\") the user should see a message: \"We couldn't find the recipient with given phone number: *NUMER_TELEFONU*\"."
+    },
+    "tc3": {
+      "heading": "Test case 3",
+      "1": "Visit /2/simulating-requests",
+      "2": "Fill amount input",
+      "3": "Fill phone number input",
+      "4": "Send with \"Send via BLIK\" button",
+      "5": "Expected result: If the bank account does not have enough funds (status 403 and body { code: \"lack_of_funds\" }) the user should see a message: \"We couldn't send USD*KWOTA* because of lack of funds\""
+    },
+    "success": "Success",
+    "successMessage": "Amount USD{{amount}} from your account was transfered to {{phone}}",
+    "error": "Error",
+    "errorMessage403": "We couldn't send USD{{amount}} because of lack of funds",
+    "errorMessage404": "We couldn't find the recipient with given phone number: {{phone}}.",
+    "amount": "Amount",
+    "currency": "USD",
+    "recipientPhoneNumber": "Recipient phone number",
+    "phoneCode": "+1",
+    "phoneFormat": "Format 123-456-789",
+    "sendBLIK": "Send via BLIK"
+  },
+  "files": {
+    "heading": "Files and third party libraries 🗃📂",
+    "p1": "An usual case in apps is file manipulation - downloading images, parsing CSVs, uploading files.",
+    "p2": "Cypress doesn't provide all of them out of the box but we can use third party libraries, which make testing cases like that a breeze. We will focus on ",
+    "p3": " and will use CSV file parser to check if the file has proper data ",
+    "p4": "You can find a button below, which allows to download an image and a place where you can drag a file, which is displayed below. Follow instructions to finish exercises in this block.",
+    "tc1": {
+      "heading": "Downloading files",
+      "1": "Visit /3/files",
+      "2": "Download the file using the button",
+      "3": "Expected result: the file is downloaded and its name is \"cypress.jpg\""
+    },
+    "download": "Download",
+    "tc2": {
+      "heading": "Upload",
+      "1": "Visit /3/files",
+      "2": "Drag and drop \"users.csv\" file (fixtures directory)",
+      "3": "Click \"Preview\" button",
+      "4": "Expected result: users from CSV file are shown under the button in a table"
+    },
+    "preview": "Preview",
+    "chooseCSV": "Choose csv file",
+    "users": "Users"
+  }
+}

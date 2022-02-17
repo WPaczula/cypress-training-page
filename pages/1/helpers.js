@@ -1,19 +1,28 @@
-import { Code, Heading, Text } from "@chakra-ui/react";
+import { Heading, Text } from "@chakra-ui/react";
 import React from "react";
 import Container from "../../components/Container";
 import MainPageLink from "../../components/MainPageLink";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
+
+export async function getServerSideProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale)),
+    },
+  };
+}
 
 const Helpers = () => {
+  const { t } = useTranslation();
+
   return (
     <>
       <MainPageLink />
       <Container>
-        <Heading color="teal">Spis użytecznych komend</Heading>
+        <Heading color="teal">{t("helpers.heading")}</Heading>
         <Text mt={4} textAlign="justify">
-          Jeżeli będziesz chciał sobie przypomnieć komendy lub sposób pisania
-          asercji/budowę testu odwiedź folder <Code>__CHEATSHEET__/1</Code> w
-          tej solucji. Jeżeli czegoś w nim nie znajdziesz powiedz mi a ja
-          postaram ci się pomóc i dodać to od razu dla potomnych 😄
+          {t("helpers.p1")}
         </Text>
       </Container>
     </>

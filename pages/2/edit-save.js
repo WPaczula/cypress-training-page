@@ -21,10 +21,20 @@ import React, { useEffect, useState } from "react";
 import Container from "../../components/Container";
 import MainPageLink from "../../components/MainPageLink";
 import { getRandomEmoji } from "../../utils/emoji";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
 
+export async function getServerSideProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale)),
+    },
+  };
+}
 const KEY = "NUMBER";
 
 const EditSave = () => {
+  const { t } = useTranslation();
   const [isEditMode, setIsEditMode] = useState(false);
   const [numberOfEmojis, setNumberOfEmojis] = useState(0);
   useEffect(() => {
@@ -42,49 +52,39 @@ const EditSave = () => {
     <>
       <MainPageLink />
       <Container>
-        <Heading color="teal">Dziwne, wcześniej działało 🤔</Heading>
+        <Heading color="teal">{t("editSave2.heading")}</Heading>
         <Text mt={8} textAlign="justify">
-          Pewną rzeczą jest, że wraz z rozwojem aplikacji niektóre testy
-          przestaną działać. Sprawdź plik testowy /2/edit-save. Spróbuj
-          znaleźć powód, przez który testy przestały działać.
+          {t("editSave2.p1")}
         </Text>
         <Text mt={4} textAlign="justify">
-          HINT: możesz kliknąć w konkretny step w cypress runnerze a jego detale
-          zostaną pokazane w konsoli
+          {t("editSave2.p2")}
         </Text>
       </Container>
       <Container mt={4}>
         <Heading size="md" color="teal">
-          Test case 1
+          {t("editSave2.tc1.title")}
         </Heading>
         <OrderedList mt={4}>
-          <ListItem>Wejdź na stronę /2/edit-save</ListItem>
-          <ListItem>Wczytaj liczbę emoji</ListItem>
-          <ListItem>Wejdź w tryb edycji za pomocą przycisku "Edytuj"</ListItem>
-          <ListItem>Zwiększ liczbę o 1 za pomocą strzałki w górę</ListItem>
-          <ListItem>
-            Zaznacz checkbox, który sprawdza, że nie jesteś robotem
-          </ListItem>
-          <ListItem>Zapisz zmiany za pomocą przycisku "Zapisz"</ListItem>
-          <ListItem>
-            Spodziewany rezultat: Zostaje wyświetlony o jeden więcej emoji.
-          </ListItem>
+          <ListItem> {t("editSave2.tc1.1")}</ListItem>
+          <ListItem> {t("editSave2.tc1.2")}</ListItem>
+          <ListItem> {t("editSave2.tc1.3")}</ListItem>
+          <ListItem> {t("editSave2.tc1.4")}</ListItem>
+          <ListItem> {t("editSave2.tc1.5")}</ListItem>
+          <ListItem> {t("editSave2.tc1.6")}</ListItem>
+          <ListItem> {t("editSave2.tc1.7")}</ListItem>
         </OrderedList>
       </Container>
       <Container mt={4}>
         <Heading size="md" color="teal">
-          Test case 2
+          {t("editSave2.tc2.title")}
         </Heading>
         <OrderedList mt={4}>
-          <ListItem>Wejdź na stronę /2/edit-save</ListItem>
-          <ListItem>Wczytaj liczbę emoji</ListItem>
-          <ListItem>Wejdź w tryb edycji za pomocą przycisku "Edytuj"</ListItem>
-          <ListItem>Wyczyść input "Liczba emoji"</ListItem>
-          <ListItem>Odrzuć zmiany za pomocą przycisku "Anuluj"</ListItem>
-          <ListItem>
-            Spodziewany rezultat: Liczba emoji pozostaje bez zmian, ale one same
-            się zmieniają
-          </ListItem>
+          <ListItem> {t("editSave2.tc2.1")}</ListItem>
+          <ListItem> {t("editSave2.tc2.2")}</ListItem>
+          <ListItem> {t("editSave2.tc2.3")}</ListItem>
+          <ListItem> {t("editSave2.tc2.4")}</ListItem>
+          <ListItem> {t("editSave2.tc2.5")}</ListItem>
+          <ListItem> {t("editSave2.tc2.6")}</ListItem>
         </OrderedList>
       </Container>
       <Container mt={4} mb={64}>
@@ -108,7 +108,7 @@ const EditSave = () => {
                   <Field name="numberOfEmojis">
                     {({ field, form }) => (
                       <FormControl id="numberOfEmojis">
-                        <FormLabel>Liczba emoji</FormLabel>
+                        <FormLabel>{t("editSave2.emojiCount")}</FormLabel>
                         <NumberInput
                           {...field}
                           onChange={(val) =>
@@ -129,9 +129,7 @@ const EditSave = () => {
                   <Field name="isNotARobot">
                     {({ field }) => (
                       <FormControl id="numberOfEmojis" mt="4">
-                        <FormLabel>
-                          Czy na pewno nie jesteś robotem? 🤖
-                        </FormLabel>
+                        <FormLabel>{t("editSave2.robot")}</FormLabel>
                         <Checkbox {...field} />
                       </FormControl>
                     )}
@@ -144,14 +142,14 @@ const EditSave = () => {
                       colorScheme="teal"
                       disabled={!values.isNotARobot || !values.numberOfEmojis}
                     >
-                      Zapisz
+                      {t("editSave2.save")}
                     </Button>
                     <Button
                       ml={2}
                       flex={1}
                       onClick={() => setIsEditMode(false)}
                     >
-                      Anuluj
+                      {t("editSave2.cancel")}
                     </Button>
                   </Flex>
                 </Form>
@@ -166,10 +164,10 @@ const EditSave = () => {
                 right={0}
                 onClick={() => setIsEditMode(true)}
               >
-                Edytuj
+                {t("editSave2.edit")}
               </Button>
               <Heading textAlign="center" color="teal">
-                Twoje emoji
+                {t("editSave2.yourEmoji")}
               </Heading>
               <Box mt={4}>
                 <Flex

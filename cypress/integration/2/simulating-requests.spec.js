@@ -2,7 +2,7 @@ import simulatingRequestsPage from "../../page-object/simulating-requests";
 
 describe("Simulating requests", () => {
   beforeEach(() => {
-    cy.visit("/2/simulating-requests");
+    cy.visit("/pl/2/simulating-requests");
     cy.login();
   });
 

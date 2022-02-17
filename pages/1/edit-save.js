@@ -20,10 +20,21 @@ import React, { useEffect, useState } from "react";
 import Container from "../../components/Container";
 import MainPageLink from "../../components/MainPageLink";
 import { getRandomEmoji } from "../../utils/emoji";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
+
+export async function getServerSideProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale)),
+    },
+  };
+}
 
 const KEY = "NUMBER";
 
 const EditSave = () => {
+  const { t } = useTranslation();
   const [isEditMode, setIsEditMode] = useState(false);
   const [numberOfEmojis, setNumberOfEmojis] = useState(0);
   useEffect(() => {
@@ -41,57 +52,42 @@ const EditSave = () => {
     <>
       <MainPageLink />
       <Container>
-        <Heading color="teal">Wczytywanie i edycja danych</Heading>
+        <Heading color="teal">{t("editSave.heading")}</Heading>
         <Text mt={8} textAlign="justify">
-          Edycja danych jest bardzo częstą sytuacją w aplikacjach, zarówno tych
-          prostych jak i bardziej skomplikowanych. Aby sprawdzić, czy zmiany
-          zostały wprowadzone często trzeba porównać je ze stanem informacji
-          sprzed zapisu.
+          {t("editSave.p1")}
         </Text>
         <Text mt={8} textAlign="justify">
-          W tym ćwiczeniu zobaczysz jak wczytać obecne dane z formularza,
-          zmienić wartości i sprawdzić czy twoje zmiany zostały wprowadzone.
-          Dzięki temu przećwiczysz przechowywanie informacji pomiędzy kolejnymi
-          krokami.
+          {t("editSave.p2")}
         </Text>
         <Text mt={4} textAlign="justify">
-          Do zapisu danych może przydać Ci się metoda <Code>as(NAME)</Code> aby
-          stworzyć alias i <Code>get(@NAME)</Code>, bądź po prostu tworzenie
-          zmiennych - wybór należy do ciebie 🤙
+          {t("editSave.p3")}
         </Text>
       </Container>
       <Container mt={4}>
         <Heading size="md" color="teal">
-          Test case 1
+          {t("editSave.tc1.title")}
         </Heading>
         <OrderedList mt={4}>
-          <ListItem>Wejdź na stronę /1/edit-save</ListItem>
-          <ListItem>Wczytaj liczbę emoji</ListItem>
-          <ListItem>Wejdź w tryb edycji za pomocą przycisku "Edytuj"</ListItem>
-          <ListItem>Zwiększ liczbę o 1 za pomocą strzałki w górę</ListItem>
-          <ListItem>
-            Zaznacz checkbox, który sprawdza, że nie jesteś robotem
-          </ListItem>
-          <ListItem>Zapisz zmiany za pomocą przycisku "Zapisz"</ListItem>
-          <ListItem>
-            Spodziewany rezultat: Zostaje wyświetlony o jeden więcej emoji.
-          </ListItem>
+          <ListItem> {t("editSave.tc1.1")}</ListItem>
+          <ListItem> {t("editSave.tc1.2")}</ListItem>
+          <ListItem> {t("editSave.tc1.3")}</ListItem>
+          <ListItem> {t("editSave.tc1.4")}</ListItem>
+          <ListItem> {t("editSave.tc1.5")}</ListItem>
+          <ListItem> {t("editSave.tc1.6")}</ListItem>
+          <ListItem> {t("editSave.tc1.7")}</ListItem>
         </OrderedList>
       </Container>
       <Container mt={4}>
         <Heading size="md" color="teal">
-          Test case 2
+          {t("editSave.tc2.title")}
         </Heading>
         <OrderedList mt={4}>
-          <ListItem>Wejdź na stronę /1/edit-save</ListItem>
-          <ListItem>Wczytaj liczbę emoji</ListItem>
-          <ListItem>Wejdź w tryb edycji za pomocą przycisku "Edytuj"</ListItem>
-          <ListItem>Wyczyść input "Liczba emoji"</ListItem>
-          <ListItem>Odrzuć zmiany za pomocą przycisku "Anuluj"</ListItem>
-          <ListItem>
-            Spodziewany rezultat: Liczba emoji pozostaje bez zmian, ale one same
-            się zmieniają
-          </ListItem>
+          <ListItem> {t("editSave.tc2.1")}</ListItem>
+          <ListItem> {t("editSave.tc2.2")}</ListItem>
+          <ListItem> {t("editSave.tc2.3")}</ListItem>
+          <ListItem> {t("editSave.tc2.4")}</ListItem>
+          <ListItem> {t("editSave.tc2.5")}</ListItem>
+          <ListItem> {t("editSave.tc2.6")}</ListItem>
         </OrderedList>
       </Container>
       <Container mt={4} mb={64}>
@@ -115,7 +111,7 @@ const EditSave = () => {
                   <Field name="numberOfEmojis">
                     {({ field, form }) => (
                       <FormControl id="numberOfEmojis">
-                        <FormLabel>Liczba emoji</FormLabel>
+                        <FormLabel>{t("editSave.emojiCount")}</FormLabel>
                         <NumberInput
                           {...field}
                           onChange={(val) =>
@@ -136,9 +132,7 @@ const EditSave = () => {
                   <Field name="isNotARobot">
                     {({ field }) => (
                       <FormControl id="numberOfEmojis" mt="4">
-                        <FormLabel>
-                          Czy na pewno nie jesteś robotem? 🤖
-                        </FormLabel>
+                        <FormLabel>{t("editSave.robot")}</FormLabel>
                         <Checkbox {...field} />
                       </FormControl>
                     )}
@@ -151,14 +145,14 @@ const EditSave = () => {
                       colorScheme="teal"
                       disabled={!values.isNotARobot || !values.numberOfEmojis}
                     >
-                      Zapisz
+                      {t("1.save")}
                     </Button>
                     <Button
                       ml={2}
                       flex={1}
                       onClick={() => setIsEditMode(false)}
                     >
-                      Anuluj
+                      {t("editSave.cancel")}
                     </Button>
                   </Flex>
                 </Form>
@@ -173,10 +167,10 @@ const EditSave = () => {
                 right={0}
                 onClick={() => setIsEditMode(true)}
               >
-                Edytuj
+                {t("editSave.edit")}
               </Button>
               <Heading textAlign="center" color="teal">
-                Twoje emoji
+                {t("editSave.yourEmoji")}
               </Heading>
               <Text fontSize="25px" textAlign="center" mt={4}>
                 {new Array(numberOfEmojis)

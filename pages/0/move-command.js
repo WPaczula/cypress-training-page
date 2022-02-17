@@ -1,33 +1,32 @@
 import { Code, Heading, Text } from "@chakra-ui/react";
 import React from "react";
+import { useTranslation } from "next-i18next";
 import Container from "../../components/Container";
 import MainPageLink from "../../components/MainPageLink";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+
+export async function getServerSideProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale)),
+    },
+  };
+}
 
 const MoveCommand = () => {
+  const { t } = useTranslation();
   return (
     <Container>
       <MainPageLink />
-      <Heading color="teal">0. Dodaj login command 📦</Heading>
+      <Heading color="teal">{t("moveCommand.heading")}</Heading>
       <Text mt={8} textAlign="justify">
-        Tworzenie reużywalnych komend w cypressie to dobry sposób na{" "}
-        <strong>uniknięcie duplikacji</strong> kodu! Zamiast tego można także
-        wydzielić funkcję javascriptową i tam włożyć swoją logikę, co wolisz 😄
+        {t("moveCommand.p1")}
       </Text>
       <Text textAlign="justify" mt={4}>
-        Jak ocenić czy tworzyć funkcję czy dodać command? Dla mnie sprawdzało
-        się pytanie:{" "}
-        <i>
-          "Czy ta funkcja będzie rozszerzać możliwości cypressa czy będzie
-          zawierać moją logikę biznesową?"
-        </i>{" "}
-        Pierwszy przypadek to obsługa customowych kontrolek w projekcie, drugą
-        byłoby wypełnienie formularza w określony sposób lub zaciągnięcie
-        danych.
+        {t("moveCommand.p2")} <i>{t("moveCommand.p3")}</i> {t("moveCommand.p4")}
       </Text>
       <Text mt={4} textAlign="justify">
-        Do dzieła! 🚀 Stwórz nową komendę cypressa, która pozwoli zalogować
-        użytkownika. Będziemy jej potrzebować w każdym teście na stronach z
-        autentykacją. Poniżej znajdziesz templatkę, której możesz użyć w folderze <Code>/support/commands.js</Code>:
+        {t("moveCommand.p5")} <Code>/support/commands.js</Code>:
       </Text>
       <Code width="100%" mt={4}>
         <Text>{`Cypress.Commands.add('COMMAND_NAME', (...ARGUMENTS) => {`}</Text>
@@ -35,7 +34,7 @@ const MoveCommand = () => {
         <Text>{`})`}</Text>
       </Code>
       <Text mt={4} textAlign="justify">
-        Po stworzeniu komendy użyj jej w swoim teście logowania!
+        {t("moveCommand.p6")}
       </Text>
     </Container>
   );

@@ -2,7 +2,7 @@ import simpleTestPage from "../../page-object/simple-test";
 
 describe("Simple test", () => {
   beforeEach(() => {
-    cy.visit("/1/simple-test");
+    cy.visit("/pl/1/simple-test");
     cy.login();
   });
 

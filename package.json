@@ -17,6 +17,7 @@
     "formik": "^2.2.6",
     "framer-motion": "^3.3.0",
     "next": "10.0.7",
+    "next-i18next": "^10.3.0",
     "papaparse": "^5.3.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",
@@ -24,7 +25,12 @@
     "yup": "^0.32.8"
   },
   "devDependencies": {
-    "cypress": "^9.4.1",
+    "cypress": "^9.5.0",
+    "cypress-cucumber-preprocessor": "^4.3.1",
     "cypress-file-upload": "^5.0.8"
+  },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": true,
+    "commonPath": "cypress/integration/4.bdd/common"
   }
 }

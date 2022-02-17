@@ -11,8 +11,21 @@ import Head from "next/head";
 import { useFirebaseAuth } from "../firebase/provider";
 import Link from "../components/Link";
 
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
+
+export async function getServerSideProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale)),
+    },
+  };
+}
+
 export default function Home() {
   const { signOut } = useFirebaseAuth();
+  const { t } = useTranslation();
+
   return (
     <div>
       <Head>
@@ -33,54 +46,46 @@ export default function Home() {
 
       <Container>
         <Heading mb={8} color="teal">
-          Hej 👋
+          {t("index.hi")}
         </Heading>
-        <Text>
-          W tym miejscu znajdziesz linki do kolejnych ćwiczeń. Przejdź na
-          konkretną stronę i przetestuj ją w cypressie korzystając z zawartych
-          tam informacji.
-        </Text>
-        <Text mt={2}>Powodzenia 🚀</Text>
+        <Text>{t("index.p1")}</Text>
+        <Text mt={2}>{t("index.p2")}</Text>
       </Container>
       <Container>
         <Heading color="teal" size="md" mb={4}>
-          Przewodnik po ćwiczeniach
+          {t("index.p3")}
         </Heading>
         <OrderedList start={0}>
           <ListItem>
-            <Link href="/0/move-command">Dodaj login command</Link>
+            <Link href="/0/move-command">{t("index.0")}</Link>
           </ListItem>
           <ListItem>
-            <Link href="/1/helpers">Pisanie testów</Link>
+            <Link href="/1/helpers">{t("index.1")}</Link>
           </ListItem>
           <OrderedList>
             <ListItem>
-              <Link href="/1/simple-test">
-                Wykorzystanie podstawowych funkcji
-              </Link>
+              <Link href="/1/simple-test">{t("index.1-1")}</Link>
             </ListItem>
             <ListItem>
-              <Link href="/1/edit-save">Edycja danych i ich zapis</Link>
+              <Link href="/1/edit-save">{t("index.1-2")}</Link>
             </ListItem>
             <ListItem>
-              <Link href="/1/simulating-requests">Kontrolowanie API</Link>
+              <Link href="/1/simulating-requests">{t("index.1-3")}</Link>
             </ListItem>
           </OrderedList>
           <ListItem>
-            <Link href="/2/simple-test">Zmiany w testach</Link>
+            <Link href="/2/simple-test"> {t("index.2")}</Link>
             <OrderedList>
               <ListItem>
-                <Link href="/2/edit-save">Ćwiczenia w debugowaniu</Link>
+                <Link href="/2/edit-save"> {t("index.2-1")}</Link>
               </ListItem>
               <ListItem>
-                <Link href="/2/simulating-requests">
-                  Ćwiczenia w naprawianiu zmian domenowych
-                </Link>
+                <Link href="/2/simulating-requests">{t("index.2-2")}</Link>
               </ListItem>
             </OrderedList>
           </ListItem>
           <ListItem>
-            <Link href="/3/files">Zewnętrzne biblioteki i pliki</Link>
+            <Link href="/3/files"> {t("index.3")}</Link>
           </ListItem>
         </OrderedList>
       </Container>

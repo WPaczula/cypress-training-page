@@ -23,26 +23,29 @@ import MainPageLink from "../../components/MainPageLink";
 import FileDropZone from "../../components/FileDropzone";
 import Papa from "papaparse";
 import Image from "next/image";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
+
+export async function getServerSideProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale)),
+    },
+  };
+}
 
 const Files = () => {
   const [users, setUsers] = useState([]);
+  const { t } = useTranslation();
 
   return (
     <>
       <MainPageLink />
       <Container>
-        <Heading color="teal">
-          Działania na plikach i zewnętrzne biblioteki 🗃📂
-        </Heading>
-        <Text mt={8}>
-          Bardzo częstym use casem w aplikacjach są wszelkie działania na
-          plikach takie jak pobieranie danych ze strony w postaci plików CSV,
-          pobieranie zdjęć czy wgrywanie plików na serwer.
-        </Text>
+        <Heading color="teal">{t("files.heading")}</Heading>
+        <Text mt={8}>{t("files.p1")}</Text>
         <Text mt={4}>
-          Natywnie cypress nie posiada takich funkcjonalności, ale można znaleźć
-          mnóstwo przydatnych bibliotek, dzięki którym testowanie takich
-          funkcjonalności jest dużo prostsze. Dzisiaj skupimy się na{" "}
+          {t("files.p2")}
           <Link
             color="teal"
             backgroundColor="gray.100"
@@ -51,8 +54,7 @@ const Files = () => {
           >
             cypress-file-upload
           </Link>
-          oraz wykorzystamy parser plików CSV aby sprawdzić czy pobrany plik ma
-          odpowiednie dane{" "}
+          {t("files.p3")}
           <Link
             color="teal"
             padding="1"
@@ -63,26 +65,16 @@ const Files = () => {
           </Link>
           .
         </Text>
-        <Text mt={4}>
-          Poniżej znajduje się przycisk, który pozwala na ściągnięcie obrazka
-          oraz miejsce, w które można "wrzucić" plik, który jest później
-          wyświetlony. Kieruj się poleceniami aby wykonać ćwiczenia z tego
-          bloku.
-        </Text>
+        <Text mt={4}>{t("files.p4")}</Text>
       </Container>
       <Container mt={4}>
         <Heading size="md" color="teal">
-          Ściąganie pliku
+          {t("files.tc1.heading")}
         </Heading>
         <OrderedList mt={4}>
-          <ListItem>Wejdź na stronę /1/files</ListItem>
-          <ListItem>
-            Śgiągnij obrazek poprzez kliknięcie w przycisk "Pobierz"
-          </ListItem>
-          <ListItem>
-            Spodziewany rezultat: obrazek został ściągnięty i nazywa się
-            "cypress.jpg"
-          </ListItem>
+          <ListItem>{t("files.tc1.1")}</ListItem>
+          <ListItem>{t("files.tc1.2")}</ListItem>
+          <ListItem>{t("files.tc1.3")}</ListItem>
         </OrderedList>
       </Container>
       <Container mt={4}>
@@ -95,24 +87,18 @@ const Files = () => {
             <Image src="/cypress.jpg" height="200" width="300" />
           </Box>
           <Button as="a" colorScheme="teal" mt="4" download href="/cypress.jpg">
-            Pobierz
+            {t("files.download")}
           </Button>
         </Flex>
       </Container>
       <Container mt={4}>
         <Heading size="md" color="teal">
-          Upload pliku
+          {t("files.tc2.heading")}
         </Heading>
         <OrderedList mt={4}>
-          <ListItem>Wejdź na stronę /1/files</ListItem>
-          <ListItem>
-            Wrzuć plik "users.csv" (folder fixtures) poprzez drag-n-drop
-          </ListItem>
-          <ListItem>Kliknij przycisk "Podgląd"</ListItem>
-          <ListItem>
-            Spodziewany rezultat: użytkownicy z pliku CSV pokazują się pod
-            przyciskiem w tabelce
-          </ListItem>
+          <ListItem>{t("files.tc2.1")}</ListItem>
+          <ListItem>{t("files.tc2.2")}</ListItem>
+          <ListItem>{t("files.tc2.3")}</ListItem>
         </OrderedList>
       </Container>
       <Container>
@@ -134,10 +120,10 @@ const Files = () => {
               <Field name="file">
                 {({ field, form }) => (
                   <FormControl id="file" mt="4">
-                    <FormLabel>Użytkownicy</FormLabel>
+                    <FormLabel>{t("files.users")}</FormLabel>
                     <FileDropZone
                       {...field}
-                      instruction="Wybierz plik csv"
+                      instruction={t("files.chooseCSV")}
                       id="file"
                       disabled={form.isSubmitting}
                       onChange={(val) => {
@@ -157,7 +143,7 @@ const Files = () => {
                 disabled={!values.file || isSubmitting}
                 mt={4}
               >
-                {isSubmitting ? <CircularProgress /> : "Podgląd"}
+                {isSubmitting ? <CircularProgress /> : t("files.preview")}
               </Button>
             </Form>
           )}
