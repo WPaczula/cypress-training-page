@@ -145,7 +145,7 @@ const EditSave = () => {
                       colorScheme="teal"
                       disabled={!values.isNotARobot || !values.numberOfEmojis}
                     >
-                      {t("1.save")}
+                      {t("editSave.save")}
                     </Button>
                     <Button
                       ml={2}
